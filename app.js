@@ -142,5 +142,6 @@ request(requestSettings, function(error, response, body) {
 
 module.exports = GTFSrealtimeService;
 
-GTFSrealtimeService.checkStation(process.argv[2], process.argv[3]);
+//GTFSrealtimeService.checkStation(process.argv[2], process.argv[3]);
+GTFSrealtimeService.getFeed();
 
