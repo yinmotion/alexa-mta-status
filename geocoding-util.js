@@ -4,7 +4,9 @@ const mapsAPIkey = 'AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE';
 const stationlocation = require('./data/stationlocation.json');
 
 var GeocodingUtil = {
-
+    reverseGeoCoding : function(lat, long){
+        
+    } 
 };
 
 module.exports = GeocodingUtil;
