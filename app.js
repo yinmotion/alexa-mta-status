@@ -5,13 +5,15 @@ const mtaURL = 'http://datamine.mta.info/mta_esi.php';
 const feedIDs = require('./data/feedid.json');
 const stationlocation = require('./data/stationlocation.json');
 
+const GeocodingUtil = require('./geocoding-util');
+
 const apiKey = '6c2cdead4118f35fe1ed1a3604e37ffb';
 
 var feedId = '1';
 
 var requestSettings = {
   method: 'GET',
-  url: 'http://datamine.mta.info/mta_esi.php?key=6c2cdead4118f35fe1ed1a3604e37ffb&feed_id=1',
+  url: mtaURL + '?key=' + apiKey + '&feed_id=',
   encoding: null
 };
 
@@ -28,7 +30,10 @@ var GTFSrealtimeService = {
       }
     }
 
-    console.log("feedId = " + feedId);
+    requestSettings.url = requestSettings.url + feedId;
+    console.log("feed_id = " + feedId);
+    console.log("requestSettings.url = " + requestSettings.url);
+    console.log("requestSettings.method = " + requestSettings.method);
   },
 
   getFeed : function(){
