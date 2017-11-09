@@ -68,6 +68,7 @@ var getAddress = function(element, reqSettings){
             console.log('status = '+status);
             if(status !== 'OK')
             return;
+
             let result = obj.results[0];
             console.log('result = '+result);
             
@@ -75,7 +76,7 @@ var getAddress = function(element, reqSettings){
                 element['address']=result.formatted_address;
                 newStations.push(element);
 
-                let data = JSON.stringify(newStations, 2);
+                let data = JSON.stringify(newStations, null, '\t');
                 
                 console.log(data);
                 console.log('------------------------------------------------------------------------');      
