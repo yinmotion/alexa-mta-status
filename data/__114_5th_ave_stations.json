@@ -1,0 +1,1059 @@
+[
+  {
+    "stopID": "R20",
+    "stopName": "14 St - Union Sq",
+    "lines": "N Q R W",
+    "latLng": "40.735736,-73.990568",
+    "distance": "0.2"
+  },
+  {
+    "stopID": "D19",
+    "stopName": "14 St",
+    "lines": "F M",
+    "latLng": "40.738228,-73.996209",
+    "distance": "0.2"
+  },
+  {
+    "stopID": "L03",
+    "stopName": "Union Sq - 14 St",
+    "lines": "L",
+    "latLng": "40.734789,-73.99073",
+    "distance": "0.3"
+  },
+  {
+    "stopID": "L02",
+    "stopName": "6 Av",
+    "lines": "L",
+    "latLng": "40.737335,-73.996786",
+    "distance": "0.3"
+  },
+  {
+    "stopID": 635,
+    "stopName": "14 St - Union Sq",
+    "lines": "4 5 6",
+    "latLng": "40.734673,-73.989951",
+    "distance": "0.3"
+  },
+  {
+    "stopID": "R19",
+    "stopName": "23 St",
+    "lines": "R W",
+    "latLng": "40.741303,-73.989344",
+    "distance": "0.3"
+  },
+  {
+    "stopID": 131,
+    "stopName": "18 St",
+    "lines": 1,
+    "latLng": "40.74104,-73.997871",
+    "distance": "0.4"
+  },
+  {
+    "stopID": "D18",
+    "stopName": "23 St",
+    "lines": "F M",
+    "latLng": "40.742878,-73.992821",
+    "distance": "0.4"
+  },
+  {
+    "stopID": 634,
+    "stopName": "23 St",
+    "lines": 6,
+    "latLng": "40.739864,-73.986599",
+    "distance": "0.5"
+  },
+  {
+    "stopID": 132,
+    "stopName": "14 St",
+    "lines": "1 2 3",
+    "latLng": "40.737826,-74.000201",
+    "distance": "0.5"
+  },
+  {
+    "stopID": 130,
+    "stopName": "23 St",
+    "lines": 1,
+    "latLng": "40.744081,-73.995657",
+    "distance": "0.6"
+  },
+  {
+    "stopID": "L01",
+    "stopName": "8 Av",
+    "lines": "L",
+    "latLng": "40.739777,-74.002578",
+    "distance": "0.6"
+  },
+  {
+    "stopID": "A31",
+    "stopName": "14 St",
+    "lines": "A C E",
+    "latLng": "40.740893,-74.00169",
+    "distance": "0.6"
+  },
+  {
+    "stopID": "L05",
+    "stopName": "3 Av",
+    "lines": "L",
+    "latLng": "40.732849,-73.986122",
+    "distance": "0.6"
+  },
+  {
+    "stopID": "R18",
+    "stopName": "28 St",
+    "lines": "R W",
+    "latLng": "40.745494,-73.988691",
+    "distance": "0.6"
+  },
+  {
+    "stopID": "R21",
+    "stopName": "8 St - NYU",
+    "lines": "R W",
+    "latLng": "40.730328,-73.992629",
+    "distance": "0.6"
+  },
+  {
+    "stopID": 633,
+    "stopName": "28 St",
+    "lines": 6,
+    "latLng": "40.74307,-73.984264",
+    "distance": "0.7"
+  },
+  {
+    "stopID": "A32",
+    "stopName": "W 4 St",
+    "lines": "A B C D E F M",
+    "latLng": "40.732338,-74.000495",
+    "distance": "0.7"
+  },
+  {
+    "stopID": 636,
+    "stopName": "Astor Pl",
+    "lines": 6,
+    "latLng": "40.730054,-73.99107",
+    "distance": "0.7"
+  },
+  {
+    "stopID": "A30",
+    "stopName": "23 St",
+    "lines": "C E",
+    "latLng": "40.745906,-73.998041",
+    "distance": "0.8"
+  },
+  {
+    "stopID": 133,
+    "stopName": "Christopher St - Sheridan Sq",
+    "lines": 1,
+    "latLng": "40.733422,-74.002906",
+    "distance": "0.8"
+  },
+  {
+    "stopID": "L06",
+    "stopName": "1 Av",
+    "lines": "L",
+    "latLng": "40.730953,-73.981628",
+    "distance": "0.8"
+  },
+  {
+    "stopID": "R17",
+    "stopName": "34 St - Herald Sq",
+    "lines": "N Q R W",
+    "latLng": "40.749567,-73.98795",
+    "distance": "0.9"
+  },
+  {
+    "stopID": 632,
+    "stopName": "33 St",
+    "lines": 6,
+    "latLng": "40.746081,-73.982076",
+    "distance": "0.9"
+  },
+  {
+    "stopID": "D17",
+    "stopName": "34 St - Herald Sq",
+    "lines": "B D F M",
+    "latLng": "40.749719,-73.987823",
+    "distance": "0.9"
+  },
+  {
+    "stopID": 129,
+    "stopName": "28 St",
+    "lines": 1,
+    "latLng": "40.747215,-73.993365",
+    "distance": "0.9"
+  },
+  {
+    "stopID": 128,
+    "stopName": "34 St - Penn Station",
+    "lines": "1 2 3",
+    "latLng": "40.750373,-73.991057",
+    "distance": "1.0"
+  },
+  {
+    "stopID": 637,
+    "stopName": "Bleecker St",
+    "lines": 6,
+    "latLng": "40.725915,-73.994659",
+    "distance": "1.0"
+  },
+  {
+    "stopID": "D21",
+    "stopName": "Broadway-Lafayette St",
+    "lines": "B D F M",
+    "latLng": "40.725297,-73.996204",
+    "distance": "1.0"
+  },
+  {
+    "stopID": "A33",
+    "stopName": "Spring St",
+    "lines": "C E",
+    "latLng": "40.726227,-74.003739",
+    "distance": "1.1"
+  },
+  {
+    "stopID": "R22",
+    "stopName": "Prince St",
+    "lines": "R W",
+    "latLng": "40.724329,-73.997702",
+    "distance": "1.1"
+  },
+  {
+    "stopID": 134,
+    "stopName": "Houston St",
+    "lines": 1,
+    "latLng": "40.728251,-74.005367",
+    "distance": "1.1"
+  },
+  {
+    "stopID": "D16",
+    "stopName": "42 St - Bryant Pk",
+    "lines": "B D F M",
+    "latLng": "40.754222,-73.984569",
+    "distance": "1.2"
+  },
+  {
+    "stopID": "F14",
+    "stopName": "2 Av",
+    "lines": "F",
+    "latLng": "40.723402,-73.989938",
+    "distance": "1.2"
+  },
+  {
+    "stopID": "R16",
+    "stopName": "Times Sq - 42 St",
+    "lines": "N Q R W",
+    "latLng": "40.754672,-73.986754",
+    "distance": "1.2"
+  },
+  {
+    "stopID": "A28",
+    "stopName": "34 St - Penn Station",
+    "lines": "A C E",
+    "latLng": "40.752287,-73.993391",
+    "distance": "1.2"
+  },
+  {
+    "stopID": 724,
+    "stopName": "5 Av",
+    "lines": 7,
+    "latLng": "40.753821,-73.981963",
+    "distance": "1.3"
+  },
+  {
+    "stopID": 901,
+    "stopName": "Grand Central - 42 St",
+    "lines": "S",
+    "latLng": "40.752769,-73.979189",
+    "distance": "1.3"
+  },
+  {
+    "stopID": 638,
+    "stopName": "Spring St",
+    "lines": 6,
+    "latLng": "40.722301,-73.997141",
+    "distance": "1.3"
+  },
+  {
+    "stopID": 127,
+    "stopName": "Times Sq - 42 St",
+    "lines": "1 2 3",
+    "latLng": "40.75529,-73.987495",
+    "distance": "1.3"
+  },
+  {
+    "stopID": 902,
+    "stopName": "Times Sq - 42 St",
+    "lines": "S",
+    "latLng": "40.755983,-73.986229",
+    "distance": "1.3"
+  },
+  {
+    "stopID": 725,
+    "stopName": "Times Sq - 42 St",
+    "lines": 7,
+    "latLng": "40.755477,-73.987691",
+    "distance": "1.3"
+  },
+  {
+    "stopID": "A34",
+    "stopName": "Canal St",
+    "lines": "A C E",
+    "latLng": "40.720824,-74.005229",
+    "distance": "1.4"
+  },
+  {
+    "stopID": 631,
+    "stopName": "Grand Central - 42 St",
+    "lines": "4 5 6",
+    "latLng": "40.751776,-73.976848",
+    "distance": "1.4"
+  },
+  {
+    "stopID": "M19",
+    "stopName": "Bowery",
+    "lines": "J Z",
+    "latLng": "40.72028,-73.993915",
+    "distance": "1.4"
+  },
+  {
+    "stopID": 135,
+    "stopName": "Canal St",
+    "lines": 1,
+    "latLng": "40.722854,-74.006277",
+    "distance": "1.4"
+  },
+  {
+    "stopID": 136,
+    "stopName": "Franklin St",
+    "lines": 1,
+    "latLng": "40.719318,-74.006886",
+    "distance": "1.5"
+  },
+  {
+    "stopID": "A27",
+    "stopName": "42 St - Port Authority Bus Terminal",
+    "lines": "A C E",
+    "latLng": "40.757308,-73.989735",
+    "distance": "1.5"
+  },
+  {
+    "stopID": 723,
+    "stopName": "Grand Central - 42 St",
+    "lines": 7,
+    "latLng": "40.751431,-73.976041",
+    "distance": "1.5"
+  },
+  {
+    "stopID": "R23",
+    "stopName": "Canal St",
+    "lines": "R W",
+    "latLng": "40.719527,-74.001775",
+    "distance": "1.5"
+  },
+  {
+    "stopID": "D22",
+    "stopName": "Grand St",
+    "lines": "B D",
+    "latLng": "40.718267,-73.993753",
+    "distance": "1.5"
+  },
+  {
+    "stopID": "D15",
+    "stopName": "47-50 Sts - Rockefeller Ctr",
+    "lines": "B D F M",
+    "latLng": "40.758663,-73.981329",
+    "distance": "1.6"
+  },
+  {
+    "stopID": "M20",
+    "stopName": "Canal St",
+    "lines": "J Z",
+    "latLng": "40.718092,-73.999892",
+    "distance": "1.6"
+  },
+  {
+    "stopID": 639,
+    "stopName": "Canal St",
+    "lines": 6,
+    "latLng": "40.718803,-74.000193",
+    "distance": "1.6"
+  },
+  {
+    "stopID": "Q01",
+    "stopName": "Canal St",
+    "lines": "N Q",
+    "latLng": "40.718383,-74.00046",
+    "distance": "1.6"
+  },
+  {
+    "stopID": "R15",
+    "stopName": "49 St",
+    "lines": "N R W",
+    "latLng": "40.759901,-73.984139",
+    "distance": "1.6"
+  },
+  {
+    "stopID": "F15",
+    "stopName": "Delancey St",
+    "lines": "F",
+    "latLng": "40.718611,-73.988114",
+    "distance": "1.7"
+  },
+  {
+    "stopID": "M18",
+    "stopName": "Essex St",
+    "lines": "J M Z",
+    "latLng": "40.718315,-73.987437",
+    "distance": "1.7"
+  },
+  {
+    "stopID": 126,
+    "stopName": "50 St",
+    "lines": 1,
+    "latLng": "40.761728,-73.983849",
+    "distance": "1.8"
+  },
+  {
+    "stopID": "F12",
+    "stopName": "5 Av/53 St",
+    "lines": "E M",
+    "latLng": "40.760167,-73.975224",
+    "distance": "1.8"
+  },
+  {
+    "stopID": 137,
+    "stopName": "Chambers St",
+    "lines": "1 2 3",
+    "latLng": "40.715478,-74.009266",
+    "distance": "1.8"
+  },
+  {
+    "stopID": 726,
+    "stopName": "34 St - 11 Av",
+    "lines": 7,
+    "latLng": "40.755882,-74.00191",
+    "distance": "1.8"
+  },
+  {
+    "stopID": "A36",
+    "stopName": "Chambers St",
+    "lines": "A C",
+    "latLng": "40.714111,-74.008585",
+    "distance": "1.9"
+  },
+  {
+    "stopID": "A25",
+    "stopName": "50 St",
+    "lines": "C E",
+    "latLng": "40.762456,-73.985984",
+    "distance": "1.9"
+  },
+  {
+    "stopID": 630,
+    "stopName": "51 St",
+    "lines": 6,
+    "latLng": "40.757107,-73.97192",
+    "distance": "1.9"
+  },
+  {
+    "stopID": "D14",
+    "stopName": "7 Av",
+    "lines": "B D E",
+    "latLng": "40.762862,-73.981637",
+    "distance": "1.9"
+  },
+  {
+    "stopID": "A02",
+    "stopName": "Inwood - 207 St",
+    "lines": "A",
+    "latLng": "40.868072,-73.919899",
+    "distance": "10.1"
+  },
+  {
+    "stopID": 107,
+    "stopName": "215 St",
+    "lines": 1,
+    "latLng": "40.869444,-73.915279",
+    "distance": "10.2"
+  },
+  {
+    "stopID": 106,
+    "stopName": "Marble Hill - 225 St",
+    "lines": 1,
+    "latLng": "40.874561,-73.909831",
+    "distance": "10.7"
+  },
+  {
+    "stopID": "E01",
+    "stopName": "World Trade Center",
+    "lines": "E",
+    "latLng": "40.712582,-74.009781",
+    "distance": "2.0"
+  },
+  {
+    "stopID": "R14",
+    "stopName": "57 St - 7 Av",
+    "lines": "N Q R W",
+    "latLng": "40.764664,-73.980658",
+    "distance": "2.0"
+  },
+  {
+    "stopID": "R24",
+    "stopName": "City Hall",
+    "lines": "R W",
+    "latLng": "40.713282,-74.006978",
+    "distance": "2.0"
+  },
+  {
+    "stopID": "F16",
+    "stopName": "East Broadway",
+    "lines": "F",
+    "latLng": "40.713715,-73.990173",
+    "distance": "2.0"
+  },
+  {
+    "stopID": "B10",
+    "stopName": "57 St",
+    "lines": "F",
+    "latLng": "40.763972,-73.97745",
+    "distance": "2.0"
+  },
+  {
+    "stopID": 228,
+    "stopName": "Park Pl",
+    "lines": "2 3",
+    "latLng": "40.713051,-74.008811",
+    "distance": "2.0"
+  },
+  {
+    "stopID": "M21",
+    "stopName": "Chambers St",
+    "lines": "J Z",
+    "latLng": "40.713243,-74.003401",
+    "distance": "2.0"
+  },
+  {
+    "stopID": 640,
+    "stopName": "Brooklyn Bridge - City Hall",
+    "lines": "4 5 6",
+    "latLng": "40.713065,-74.004131",
+    "distance": "2.0"
+  },
+  {
+    "stopID": "R25",
+    "stopName": "Cortlandt St",
+    "lines": "R W",
+    "latLng": "40.710668,-74.011029",
+    "distance": "2.1"
+  },
+  {
+    "stopID": 138,
+    "stopName": "Cortlandt St",
+    "lines": 1,
+    "latLng": "40.711835,-74.012188",
+    "distance": "2.1"
+  },
+  {
+    "stopID": "R13",
+    "stopName": "5 Av/59 St",
+    "lines": "N W R",
+    "latLng": "40.764811,-73.973347",
+    "distance": "2.1"
+  },
+  {
+    "stopID": "F11",
+    "stopName": "Lexington Av/53 St",
+    "lines": "E M",
+    "latLng": "40.757552,-73.969055",
+    "distance": "2.2"
+  },
+  {
+    "stopID": 418,
+    "stopName": "Fulton St",
+    "lines": "4 5",
+    "latLng": "40.710368,-74.009509",
+    "distance": "2.2"
+  },
+  {
+    "stopID": "M22",
+    "stopName": "Fulton St",
+    "lines": "J Z",
+    "latLng": "40.710374,-74.007582",
+    "distance": "2.2"
+  },
+  {
+    "stopID": "A38",
+    "stopName": "Fulton St",
+    "lines": "A C",
+    "latLng": "40.710197,-74.007691",
+    "distance": "2.2"
+  },
+  {
+    "stopID": 125,
+    "stopName": "59 St - Columbus Circle",
+    "lines": 1,
+    "latLng": "40.768247,-73.981929",
+    "distance": "2.3"
+  },
+  {
+    "stopID": 229,
+    "stopName": "Fulton St",
+    "lines": "2 3",
+    "latLng": "40.709416,-74.006571",
+    "distance": "2.3"
+  },
+  {
+    "stopID": "A24",
+    "stopName": "59 St - Columbus Circle",
+    "lines": "A B C D",
+    "latLng": "40.768296,-73.981736",
+    "distance": "2.3"
+  },
+  {
+    "stopID": 139,
+    "stopName": "Rector St",
+    "lines": 1,
+    "latLng": "40.707513,-74.013783",
+    "distance": "2.4"
+  },
+  {
+    "stopID": 419,
+    "stopName": "Wall St",
+    "lines": "4 5",
+    "latLng": "40.707557,-74.011862",
+    "distance": "2.4"
+  },
+  {
+    "stopID": 629,
+    "stopName": "59 St",
+    "lines": "4 5 6",
+    "latLng": "40.762526,-73.967967",
+    "distance": "2.4"
+  },
+  {
+    "stopID": "R26",
+    "stopName": "Rector St",
+    "lines": "R W",
+    "latLng": "40.70722,-74.013342",
+    "distance": "2.4"
+  },
+  {
+    "stopID": "R11",
+    "stopName": "Lexington Av/59 St",
+    "lines": "N W R",
+    "latLng": "40.76266,-73.967258",
+    "distance": "2.4"
+  },
+  {
+    "stopID": "M23",
+    "stopName": "Broad St",
+    "lines": "J Z",
+    "latLng": "40.706476,-74.011056",
+    "distance": "2.5"
+  },
+  {
+    "stopID": 230,
+    "stopName": "Wall St",
+    "lines": "2 3",
+    "latLng": "40.706821,-74.0091",
+    "distance": "2.5"
+  },
+  {
+    "stopID": 420,
+    "stopName": "Bowling Green",
+    "lines": "4 5",
+    "latLng": "40.704817,-74.014065",
+    "distance": "2.6"
+  },
+  {
+    "stopID": 124,
+    "stopName": "66 St - Lincoln Center",
+    "lines": 1,
+    "latLng": "40.77344,-73.982209",
+    "distance": "2.6"
+  },
+  {
+    "stopID": "B08",
+    "stopName": "Lexington Av/63 St",
+    "lines": "F Q",
+    "latLng": "40.764629,-73.966113",
+    "distance": "2.6"
+  },
+  {
+    "stopID": "R27",
+    "stopName": "Whitehall St",
+    "lines": "R W",
+    "latLng": "40.703087,-74.012994",
+    "distance": "2.7"
+  },
+  {
+    "stopID": "A22",
+    "stopName": "72 St",
+    "lines": "B C",
+    "latLng": "40.775594,-73.97641",
+    "distance": "2.8"
+  },
+  {
+    "stopID": 628,
+    "stopName": "68 St - Hunter College",
+    "lines": 6,
+    "latLng": "40.768141,-73.96387",
+    "distance": "2.8"
+  },
+  {
+    "stopID": 142,
+    "stopName": "South Ferry",
+    "lines": 1,
+    "latLng": "40.702068,-74.013664",
+    "distance": "2.8"
+  },
+  {
+    "stopID": 123,
+    "stopName": "72 St",
+    "lines": "1 2 3",
+    "latLng": "40.778453,-73.98197",
+    "distance": "3.0"
+  },
+  {
+    "stopID": "Q03",
+    "stopName": "72 St",
+    "lines": "Q",
+    "latLng": "40.768799,-73.958424",
+    "distance": "3.2"
+  },
+  {
+    "stopID": 627,
+    "stopName": "77 St",
+    "lines": 6,
+    "latLng": "40.77362,-73.959874",
+    "distance": "3.3"
+  },
+  {
+    "stopID": "A21",
+    "stopName": "81 St - Museum of Natural History",
+    "lines": "B C",
+    "latLng": "40.781433,-73.972143",
+    "distance": "3.3"
+  },
+  {
+    "stopID": 122,
+    "stopName": "79 St",
+    "lines": 1,
+    "latLng": "40.783934,-73.979917",
+    "distance": "3.4"
+  },
+  {
+    "stopID": "B06",
+    "stopName": "Roosevelt Island",
+    "lines": "F",
+    "latLng": "40.759145,-73.95326",
+    "distance": "3.5"
+  },
+  {
+    "stopID": "A20",
+    "stopName": "86 St",
+    "lines": "B C",
+    "latLng": "40.785868,-73.968916",
+    "distance": "3.6"
+  },
+  {
+    "stopID": 121,
+    "stopName": "86 St",
+    "lines": 1,
+    "latLng": "40.788644,-73.976218",
+    "distance": "3.7"
+  },
+  {
+    "stopID": 626,
+    "stopName": "86 St",
+    "lines": "4 5 6",
+    "latLng": "40.779492,-73.955589",
+    "distance": "3.7"
+  },
+  {
+    "stopID": "Q04",
+    "stopName": "86 St",
+    "lines": "Q",
+    "latLng": "40.777891,-73.951787",
+    "distance": "4.0"
+  },
+  {
+    "stopID": "A19",
+    "stopName": "96 St",
+    "lines": "B C",
+    "latLng": "40.791642,-73.964696",
+    "distance": "4.1"
+  },
+  {
+    "stopID": 625,
+    "stopName": "96 St",
+    "lines": 6,
+    "latLng": "40.785672,-73.95107",
+    "distance": "4.2"
+  },
+  {
+    "stopID": 120,
+    "stopName": "96 St",
+    "lines": "1 2 3",
+    "latLng": "40.793919,-73.972323",
+    "distance": "4.2"
+  },
+  {
+    "stopID": "A18",
+    "stopName": "103 St",
+    "lines": "B C",
+    "latLng": "40.796092,-73.961454",
+    "distance": "4.4"
+  },
+  {
+    "stopID": "Q05",
+    "stopName": "96 St",
+    "lines": "Q",
+    "latLng": "40.784318,-73.947152",
+    "distance": "4.5"
+  },
+  {
+    "stopID": 624,
+    "stopName": "103 St",
+    "lines": 6,
+    "latLng": "40.7906,-73.947478",
+    "distance": "4.6"
+  },
+  {
+    "stopID": 119,
+    "stopName": "103 St",
+    "lines": 1,
+    "latLng": "40.799446,-73.968379",
+    "distance": "4.6"
+  },
+  {
+    "stopID": "A17",
+    "stopName": "Cathedral Pkwy (110 St)",
+    "lines": "B C",
+    "latLng": "40.800603,-73.958161",
+    "distance": "4.8"
+  },
+  {
+    "stopID": 227,
+    "stopName": "Central Park North (110 St)",
+    "lines": "2 3",
+    "latLng": "40.799075,-73.951822",
+    "distance": "4.9"
+  },
+  {
+    "stopID": 118,
+    "stopName": "Cathedral Pkwy",
+    "lines": 1,
+    "latLng": "40.803967,-73.966847",
+    "distance": "4.9"
+  },
+  {
+    "stopID": 623,
+    "stopName": "110 St",
+    "lines": 6,
+    "latLng": "40.79502,-73.94425",
+    "distance": "5.0"
+  },
+  {
+    "stopID": 226,
+    "stopName": "116 St",
+    "lines": "2 3",
+    "latLng": "40.802098,-73.949625",
+    "distance": "5.1"
+  },
+  {
+    "stopID": 117,
+    "stopName": "116 St - Columbia University",
+    "lines": 1,
+    "latLng": "40.807722,-73.96411",
+    "distance": "5.2"
+  },
+  {
+    "stopID": 622,
+    "stopName": "116 St",
+    "lines": 6,
+    "latLng": "40.798629,-73.941617",
+    "distance": "5.2"
+  },
+  {
+    "stopID": "A16",
+    "stopName": "116 St",
+    "lines": "B C",
+    "latLng": "40.805085,-73.954882",
+    "distance": "5.2"
+  },
+  {
+    "stopID": 225,
+    "stopName": "125 St",
+    "lines": "2 3",
+    "latLng": "40.807754,-73.945495",
+    "distance": "5.6"
+  },
+  {
+    "stopID": "A15",
+    "stopName": "125 St",
+    "lines": "A B C D",
+    "latLng": "40.811109,-73.952343",
+    "distance": "5.6"
+  },
+  {
+    "stopID": 621,
+    "stopName": "125 St",
+    "lines": "4 5 6",
+    "latLng": "40.804138,-73.937594",
+    "distance": "5.7"
+  },
+  {
+    "stopID": 116,
+    "stopName": "125 St",
+    "lines": 1,
+    "latLng": "40.815581,-73.958372",
+    "distance": "5.9"
+  },
+  {
+    "stopID": 224,
+    "stopName": "135 St",
+    "lines": "2 3",
+    "latLng": "40.814229,-73.94077",
+    "distance": "6.1"
+  },
+  {
+    "stopID": "A14",
+    "stopName": "135 St",
+    "lines": "B C",
+    "latLng": "40.817894,-73.947649",
+    "distance": "6.1"
+  },
+  {
+    "stopID": 115,
+    "stopName": "137 St - City College",
+    "lines": 1,
+    "latLng": "40.822008,-73.953676",
+    "distance": "6.3"
+  },
+  {
+    "stopID": 302,
+    "stopName": "145 St",
+    "lines": 3,
+    "latLng": "40.820421,-73.936245",
+    "distance": "6.6"
+  },
+  {
+    "stopID": "A12",
+    "stopName": "145 St",
+    "lines": "A B C D",
+    "latLng": "40.824783,-73.944216",
+    "distance": "6.7"
+  },
+  {
+    "stopID": 114,
+    "stopName": "145 St",
+    "lines": 1,
+    "latLng": "40.826551,-73.95036",
+    "distance": "6.7"
+  },
+  {
+    "stopID": 301,
+    "stopName": "Harlem - 148 St",
+    "lines": 3,
+    "latLng": "40.82388,-73.93647",
+    "distance": "6.9"
+  },
+  {
+    "stopID": "D12",
+    "stopName": "155 St",
+    "lines": "B D",
+    "latLng": "40.830135,-73.938209",
+    "distance": "7.1"
+  },
+  {
+    "stopID": "A11",
+    "stopName": "155 St",
+    "lines": "C",
+    "latLng": "40.830518,-73.941514",
+    "distance": "7.1"
+  },
+  {
+    "stopID": 113,
+    "stopName": "157 St",
+    "lines": 1,
+    "latLng": "40.834041,-73.94489",
+    "distance": "7.3"
+  },
+  {
+    "stopID": "A10",
+    "stopName": "163 St - Amsterdam Av",
+    "lines": "C",
+    "latLng": "40.836013,-73.939892",
+    "distance": "7.5"
+  },
+  {
+    "stopID": 112,
+    "stopName": "168 St - Washington Hts",
+    "lines": 1,
+    "latLng": "40.840556,-73.940133",
+    "distance": "7.8"
+  },
+  {
+    "stopID": "A09",
+    "stopName": "168 St",
+    "lines": "A C",
+    "latLng": "40.840719,-73.939561",
+    "distance": "7.8"
+  },
+  {
+    "stopID": "A07",
+    "stopName": "175 St",
+    "lines": "A",
+    "latLng": "40.847391,-73.939704",
+    "distance": "8.3"
+  },
+  {
+    "stopID": 111,
+    "stopName": "181 St",
+    "lines": 1,
+    "latLng": "40.849505,-73.933596",
+    "distance": "8.5"
+  },
+  {
+    "stopID": "A06",
+    "stopName": "181 St",
+    "lines": "A",
+    "latLng": "40.851695,-73.937969",
+    "distance": "8.6"
+  },
+  {
+    "stopID": 110,
+    "stopName": "191 St",
+    "lines": 1,
+    "latLng": "40.855225,-73.929412",
+    "distance": "9.0"
+  },
+  {
+    "stopID": "A05",
+    "stopName": "190 St",
+    "lines": "A",
+    "latLng": "40.859022,-73.93418",
+    "distance": "9.1"
+  },
+  {
+    "stopID": 109,
+    "stopName": "Dyckman St",
+    "lines": 1,
+    "latLng": "40.860531,-73.925536",
+    "distance": "9.6"
+  },
+  {
+    "stopID": "A03",
+    "stopName": "Dyckman St",
+    "lines": "A",
+    "latLng": "40.865491,-73.927271",
+    "distance": "9.7"
+  },
+  {
+    "stopID": 108,
+    "stopName": "207 St",
+    "lines": 1,
+    "latLng": "40.864621,-73.918822",
+    "distance": "9.8"
+  }
+]
