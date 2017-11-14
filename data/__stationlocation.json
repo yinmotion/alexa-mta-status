@@ -10,7 +10,8 @@
     "Daytime Routes": "N W",
     "Structure": "Elevated",
     "GTFS Latitude": 40.775036,
-    "GTFS Longitude": -73.912034
+    "GTFS Longitude": -73.912034,
+    "address": ""
   },
   {
     "Station ID": 2,
