@@ -3,7 +3,6 @@ const request = require('request');
 const mtaURL = 'http://datamine.mta.info/mta_esi.php';
 
 const feedIDs = require('./data/feedid.json');
-const stationlocation = require('./data/stationlocation.json');
 
 const GeocodingUtil = require('./geocoding-util');
 

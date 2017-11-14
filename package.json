@@ -2,7 +2,7 @@
   "name": "alexa-mta-status",
   "version": "1.0.0",
   "description": "Alexa MTA Status",
-  "main": "index.js",
+  "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,9 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "alexa-sdk": "^1.0.18",
-    "request": "^2.83.0",
-    "gtfs-realtime-bindings": "^0.0.4",
     "dynasty": "^0.2.4",
-    "lodash": "^4.3.0"
+    "gtfs-realtime-bindings": "^0.0.4",
+    "lodash": "^4.3.0",
+    "request": "^2.83.0",
+    "serverless-dynamodb-local": "^0.2.26"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yinmotion/alexa-mta-status.git"
   }
 }
