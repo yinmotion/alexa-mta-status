@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+# API keys
+serverless.keys.yml
+

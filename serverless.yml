@@ -22,6 +22,10 @@ provider:
   runtime: nodejs6.10
   profile: admin-cshaoyliu
 
+  environment: 
+    googleMapsAPIkey: ${file(./serverless.keys.yml):${opt:stage}.googleMapsAPIkey}
+    mtaAPIkey: ${file(./serverless.keys.yml):${opt:stage}.mtaAPIkey}
+
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -43,8 +47,9 @@ provider:
 #            - "/*"
 
 # you can define service wide environment variables here
-#  environment:
-#    variable1: value1
+# environment:
+#  variable1: value1
+
 
 # you can add packaging information here
 #package:
@@ -58,12 +63,39 @@ provider:
 functions:
   CheckMTAStatus:
     handler: handler.myFunction
-
-	events:
+    events:
       - alexaSkill
+
+  CheckStation:
+    handler: app.checkStation
 
 plugins:
   - serverless-dynamodb-local
+
+custom:
+  dynamodb:
+    start:
+      migrate: true
+
+resources:
+  Resources:
+    userStationsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: userStationsTable
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            AttributeType: HASH
+          - AttributeName: stations
+            KeyType: L
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
