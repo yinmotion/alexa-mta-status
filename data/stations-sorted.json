@@ -1,0 +1,1059 @@
+[
+	{
+		"stopID": "R20",
+		"stopName": "14 St - Union Sq",
+		"lines": "N Q R W",
+		"distance": "0.2",
+		"duration": "5 mins"
+	},
+	{
+		"stopID": "D19",
+		"stopName": "14 St",
+		"lines": "F M",
+		"distance": "0.2",
+		"duration": "5 mins"
+	},
+	{
+		"stopID": "L03",
+		"stopName": "Union Sq - 14 St",
+		"lines": "L",
+		"distance": "0.3",
+		"duration": "6 mins"
+	},
+	{
+		"stopID": "L02",
+		"stopName": "6 Av",
+		"lines": "L",
+		"distance": "0.3",
+		"duration": "6 mins"
+	},
+	{
+		"stopID": 635,
+		"stopName": "14 St - Union Sq",
+		"lines": "4 5 6",
+		"distance": "0.3",
+		"duration": "7 mins"
+	},
+	{
+		"stopID": "R19",
+		"stopName": "23 St",
+		"lines": "R W",
+		"distance": "0.3",
+		"duration": "7 mins"
+	},
+	{
+		"stopID": 131,
+		"stopName": "18 St",
+		"lines": 1,
+		"distance": "0.4",
+		"duration": "7 mins"
+	},
+	{
+		"stopID": "D18",
+		"stopName": "23 St",
+		"lines": "F M",
+		"distance": "0.4",
+		"duration": "9 mins"
+	},
+	{
+		"stopID": 634,
+		"stopName": "23 St",
+		"lines": 6,
+		"distance": "0.5",
+		"duration": "9 mins"
+	},
+	{
+		"stopID": 132,
+		"stopName": "14 St",
+		"lines": "1 2 3",
+		"distance": "0.5",
+		"duration": "11 mins"
+	},
+	{
+		"stopID": 130,
+		"stopName": "23 St",
+		"lines": 1,
+		"distance": "0.6",
+		"duration": "12 mins"
+	},
+	{
+		"stopID": "L01",
+		"stopName": "8 Av",
+		"lines": "L",
+		"distance": "0.6",
+		"duration": "13 mins"
+	},
+	{
+		"stopID": "A31",
+		"stopName": "14 St",
+		"lines": "A C E",
+		"distance": "0.6",
+		"duration": "11 mins"
+	},
+	{
+		"stopID": "L05",
+		"stopName": "3 Av",
+		"lines": "L",
+		"distance": "0.6",
+		"duration": "12 mins"
+	},
+	{
+		"stopID": "R18",
+		"stopName": "28 St",
+		"lines": "R W",
+		"distance": "0.6",
+		"duration": "12 mins"
+	},
+	{
+		"stopID": "R21",
+		"stopName": "8 St - NYU",
+		"lines": "R W",
+		"distance": "0.6",
+		"duration": "13 mins"
+	},
+	{
+		"stopID": 633,
+		"stopName": "28 St",
+		"lines": 6,
+		"distance": "0.7",
+		"duration": "14 mins"
+	},
+	{
+		"stopID": "A32",
+		"stopName": "W 4 St",
+		"lines": "A B C D E F M",
+		"distance": "0.7",
+		"duration": "14 mins"
+	},
+	{
+		"stopID": 636,
+		"stopName": "Astor Pl",
+		"lines": 6,
+		"distance": "0.7",
+		"duration": "13 mins"
+	},
+	{
+		"stopID": "A30",
+		"stopName": "23 St",
+		"lines": "C E",
+		"distance": "0.8",
+		"duration": "17 mins"
+	},
+	{
+		"stopID": 133,
+		"stopName": "Christopher St - Sheridan Sq",
+		"lines": 1,
+		"distance": "0.8",
+		"duration": "16 mins"
+	},
+	{
+		"stopID": "L06",
+		"stopName": "1 Av",
+		"lines": "L",
+		"distance": "0.8",
+		"duration": "17 mins"
+	},
+	{
+		"stopID": "R17",
+		"stopName": "34 St - Herald Sq",
+		"lines": "N Q R W",
+		"distance": "0.9",
+		"duration": "18 mins"
+	},
+	{
+		"stopID": 632,
+		"stopName": "33 St",
+		"lines": 6,
+		"distance": "0.9",
+		"duration": "19 mins"
+	},
+	{
+		"stopID": "D17",
+		"stopName": "34 St - Herald Sq",
+		"lines": "B D F M",
+		"distance": "0.9",
+		"duration": "18 mins"
+	},
+	{
+		"stopID": 129,
+		"stopName": "28 St",
+		"lines": 1,
+		"distance": "0.9",
+		"duration": "17 mins"
+	},
+	{
+		"stopID": 128,
+		"stopName": "34 St - Penn Station",
+		"lines": "1 2 3",
+		"distance": "1.0",
+		"duration": "20 mins"
+	},
+	{
+		"stopID": 637,
+		"stopName": "Bleecker St",
+		"lines": 6,
+		"distance": "1.0",
+		"duration": "20 mins"
+	},
+	{
+		"stopID": "D21",
+		"stopName": "Broadway-Lafayette St",
+		"lines": "B D F M",
+		"distance": "1.0",
+		"duration": "21 mins"
+	},
+	{
+		"stopID": "A33",
+		"stopName": "Spring St",
+		"lines": "C E",
+		"distance": "1.1",
+		"duration": "22 mins"
+	},
+	{
+		"stopID": "R22",
+		"stopName": "Prince St",
+		"lines": "R W",
+		"distance": "1.1",
+		"duration": "23 mins"
+	},
+	{
+		"stopID": 134,
+		"stopName": "Houston St",
+		"lines": 1,
+		"distance": "1.1",
+		"duration": "22 mins"
+	},
+	{
+		"stopID": "D16",
+		"stopName": "42 St - Bryant Pk",
+		"lines": "B D F M",
+		"distance": "1.2",
+		"duration": "26 mins"
+	},
+	{
+		"stopID": "F14",
+		"stopName": "2 Av",
+		"lines": "F",
+		"distance": "1.2",
+		"duration": "25 mins"
+	},
+	{
+		"stopID": "R16",
+		"stopName": "Times Sq - 42 St",
+		"lines": "N Q R W",
+		"distance": "1.2",
+		"duration": "25 mins"
+	},
+	{
+		"stopID": "A28",
+		"stopName": "34 St - Penn Station",
+		"lines": "A C E",
+		"distance": "1.2",
+		"duration": "25 mins"
+	},
+	{
+		"stopID": 724,
+		"stopName": "5 Av",
+		"lines": 7,
+		"distance": "1.3",
+		"duration": "27 mins"
+	},
+	{
+		"stopID": 901,
+		"stopName": "Grand Central - 42 St",
+		"lines": "S",
+		"distance": "1.3",
+		"duration": "27 mins"
+	},
+	{
+		"stopID": 638,
+		"stopName": "Spring St",
+		"lines": 6,
+		"distance": "1.3",
+		"duration": "26 mins"
+	},
+	{
+		"stopID": 127,
+		"stopName": "Times Sq - 42 St",
+		"lines": "1 2 3",
+		"distance": "1.3",
+		"duration": "27 mins"
+	},
+	{
+		"stopID": 902,
+		"stopName": "Times Sq - 42 St",
+		"lines": "S",
+		"distance": "1.3",
+		"duration": "27 mins"
+	},
+	{
+		"stopID": 725,
+		"stopName": "Times Sq - 42 St",
+		"lines": 7,
+		"distance": "1.3",
+		"duration": "27 mins"
+	},
+	{
+		"stopID": "A34",
+		"stopName": "Canal St",
+		"lines": "A C E",
+		"distance": "1.4",
+		"duration": "28 mins"
+	},
+	{
+		"stopID": 631,
+		"stopName": "Grand Central - 42 St",
+		"lines": "4 5 6",
+		"distance": "1.4",
+		"duration": "30 mins"
+	},
+	{
+		"stopID": "M19",
+		"stopName": "Bowery",
+		"lines": "J Z",
+		"distance": "1.4",
+		"duration": "28 mins"
+	},
+	{
+		"stopID": 135,
+		"stopName": "Canal St",
+		"lines": 1,
+		"distance": "1.4",
+		"duration": "27 mins"
+	},
+	{
+		"stopID": 136,
+		"stopName": "Franklin St",
+		"lines": 1,
+		"distance": "1.5",
+		"duration": "32 mins"
+	},
+	{
+		"stopID": "A27",
+		"stopName": "42 St - Port Authority Bus Terminal",
+		"lines": "A C E",
+		"distance": "1.5",
+		"duration": "31 mins"
+	},
+	{
+		"stopID": 723,
+		"stopName": "Grand Central - 42 St",
+		"lines": 7,
+		"distance": "1.5",
+		"duration": "30 mins"
+	},
+	{
+		"stopID": "R23",
+		"stopName": "Canal St",
+		"lines": "R W",
+		"distance": "1.5",
+		"duration": "30 mins"
+	},
+	{
+		"stopID": "D22",
+		"stopName": "Grand St",
+		"lines": "B D",
+		"distance": "1.5",
+		"duration": "32 mins"
+	},
+	{
+		"stopID": "D15",
+		"stopName": "47-50 Sts - Rockefeller Ctr",
+		"lines": "B D F M",
+		"distance": "1.6",
+		"duration": "32 mins"
+	},
+	{
+		"stopID": "M20",
+		"stopName": "Canal St",
+		"lines": "J Z",
+		"distance": "1.6",
+		"duration": "33 mins"
+	},
+	{
+		"stopID": 639,
+		"stopName": "Canal St",
+		"lines": 6,
+		"distance": "1.6",
+		"duration": "32 mins"
+	},
+	{
+		"stopID": "Q01",
+		"stopName": "Canal St",
+		"lines": "N Q",
+		"distance": "1.6",
+		"duration": "33 mins"
+	},
+	{
+		"stopID": "R15",
+		"stopName": "49 St",
+		"lines": "N R W",
+		"distance": "1.6",
+		"duration": "33 mins"
+	},
+	{
+		"stopID": "F15",
+		"stopName": "Delancey St",
+		"lines": "F",
+		"distance": "1.7",
+		"duration": "35 mins"
+	},
+	{
+		"stopID": "M18",
+		"stopName": "Essex St",
+		"lines": "J M Z",
+		"distance": "1.7",
+		"duration": "36 mins"
+	},
+	{
+		"stopID": 126,
+		"stopName": "50 St",
+		"lines": 1,
+		"distance": "1.8",
+		"duration": "36 mins"
+	},
+	{
+		"stopID": "F12",
+		"stopName": "5 Av/53 St",
+		"lines": "E M",
+		"distance": "1.8",
+		"duration": "37 mins"
+	},
+	{
+		"stopID": 137,
+		"stopName": "Chambers St",
+		"lines": "1 2 3",
+		"distance": "1.8",
+		"duration": "37 mins"
+	},
+	{
+		"stopID": 726,
+		"stopName": "34 St - 11 Av",
+		"lines": 7,
+		"distance": "1.8",
+		"duration": "36 mins"
+	},
+	{
+		"stopID": "A36",
+		"stopName": "Chambers St",
+		"lines": "A C",
+		"distance": "1.9",
+		"duration": "39 mins"
+	},
+	{
+		"stopID": "A25",
+		"stopName": "50 St",
+		"lines": "C E",
+		"distance": "1.9",
+		"duration": "38 mins"
+	},
+	{
+		"stopID": 630,
+		"stopName": "51 St",
+		"lines": 6,
+		"distance": "1.9",
+		"duration": "40 mins"
+	},
+	{
+		"stopID": "D14",
+		"stopName": "7 Av",
+		"lines": "B D E",
+		"distance": "1.9",
+		"duration": "39 mins"
+	},
+	{
+		"stopID": "A02",
+		"stopName": "Inwood - 207 St",
+		"lines": "A",
+		"distance": "10.1",
+		"duration": "3 hours 22 mins"
+	},
+	{
+		"stopID": 107,
+		"stopName": "215 St",
+		"lines": 1,
+		"distance": "10.2",
+		"duration": "3 hours 24 mins"
+	},
+	{
+		"stopID": 106,
+		"stopName": "Marble Hill - 225 St",
+		"lines": 1,
+		"distance": "10.7",
+		"duration": "3 hours 34 mins"
+	},
+	{
+		"stopID": "E01",
+		"stopName": "World Trade Center",
+		"lines": "E",
+		"distance": "2.0",
+		"duration": "41 mins"
+	},
+	{
+		"stopID": "R14",
+		"stopName": "57 St - 7 Av",
+		"lines": "N Q R W",
+		"distance": "2.0",
+		"duration": "41 mins"
+	},
+	{
+		"stopID": "R24",
+		"stopName": "City Hall",
+		"lines": "R W",
+		"distance": "2.0",
+		"duration": "41 mins"
+	},
+	{
+		"stopID": "F16",
+		"stopName": "East Broadway",
+		"lines": "F",
+		"distance": "2.0",
+		"duration": "42 mins"
+	},
+	{
+		"stopID": "B10",
+		"stopName": "57 St",
+		"lines": "F",
+		"distance": "2.0",
+		"duration": "41 mins"
+	},
+	{
+		"stopID": 228,
+		"stopName": "Park Pl",
+		"lines": "2 3",
+		"distance": "2.0",
+		"duration": "41 mins"
+	},
+	{
+		"stopID": "M21",
+		"stopName": "Chambers St",
+		"lines": "J Z",
+		"distance": "2.0",
+		"duration": "41 mins"
+	},
+	{
+		"stopID": 640,
+		"stopName": "Brooklyn Bridge - City Hall",
+		"lines": "4 5 6",
+		"distance": "2.0",
+		"duration": "41 mins"
+	},
+	{
+		"stopID": "R25",
+		"stopName": "Cortlandt St",
+		"lines": "R W",
+		"distance": "2.1",
+		"duration": "44 mins"
+	},
+	{
+		"stopID": 138,
+		"stopName": "Cortlandt St",
+		"lines": 1,
+		"distance": "2.1",
+		"duration": "43 mins"
+	},
+	{
+		"stopID": "R13",
+		"stopName": "5 Av/59 St",
+		"lines": "N W R",
+		"distance": "2.1",
+		"duration": "44 mins"
+	},
+	{
+		"stopID": "F11",
+		"stopName": "Lexington Av/53 St",
+		"lines": "E M",
+		"distance": "2.2",
+		"duration": "44 mins"
+	},
+	{
+		"stopID": 418,
+		"stopName": "Fulton St",
+		"lines": "4 5",
+		"distance": "2.2",
+		"duration": "45 mins"
+	},
+	{
+		"stopID": "M22",
+		"stopName": "Fulton St",
+		"lines": "J Z",
+		"distance": "2.2",
+		"duration": "46 mins"
+	},
+	{
+		"stopID": "A38",
+		"stopName": "Fulton St",
+		"lines": "A C",
+		"distance": "2.2",
+		"duration": "46 mins"
+	},
+	{
+		"stopID": 125,
+		"stopName": "59 St - Columbus Circle",
+		"lines": 1,
+		"distance": "2.3",
+		"duration": "46 mins"
+	},
+	{
+		"stopID": 229,
+		"stopName": "Fulton St",
+		"lines": "2 3",
+		"distance": "2.3",
+		"duration": "48 mins"
+	},
+	{
+		"stopID": "A24",
+		"stopName": "59 St - Columbus Circle",
+		"lines": "A B C D",
+		"distance": "2.3",
+		"duration": "47 mins"
+	},
+	{
+		"stopID": 139,
+		"stopName": "Rector St",
+		"lines": 1,
+		"distance": "2.4",
+		"duration": "50 mins"
+	},
+	{
+		"stopID": 419,
+		"stopName": "Wall St",
+		"lines": "4 5",
+		"distance": "2.4",
+		"duration": "49 mins"
+	},
+	{
+		"stopID": 629,
+		"stopName": "59 St",
+		"lines": "4 5 6",
+		"distance": "2.4",
+		"duration": "49 mins"
+	},
+	{
+		"stopID": "R26",
+		"stopName": "Rector St",
+		"lines": "R W",
+		"distance": "2.4",
+		"duration": "49 mins"
+	},
+	{
+		"stopID": "R11",
+		"stopName": "Lexington Av/59 St",
+		"lines": "N W R",
+		"distance": "2.4",
+		"duration": "50 mins"
+	},
+	{
+		"stopID": "M23",
+		"stopName": "Broad St",
+		"lines": "J Z",
+		"distance": "2.5",
+		"duration": "51 mins"
+	},
+	{
+		"stopID": 230,
+		"stopName": "Wall St",
+		"lines": "2 3",
+		"distance": "2.5",
+		"duration": "52 mins"
+	},
+	{
+		"stopID": 420,
+		"stopName": "Bowling Green",
+		"lines": "4 5",
+		"distance": "2.6",
+		"duration": "53 mins"
+	},
+	{
+		"stopID": 124,
+		"stopName": "66 St - Lincoln Center",
+		"lines": 1,
+		"distance": "2.6",
+		"duration": "54 mins"
+	},
+	{
+		"stopID": "B08",
+		"stopName": "Lexington Av/63 St",
+		"lines": "F Q",
+		"distance": "2.6",
+		"duration": "53 mins"
+	},
+	{
+		"stopID": "R27",
+		"stopName": "Whitehall St",
+		"lines": "R W",
+		"distance": "2.7",
+		"duration": "56 mins"
+	},
+	{
+		"stopID": "A22",
+		"stopName": "72 St",
+		"lines": "B C",
+		"distance": "2.8",
+		"duration": "58 mins"
+	},
+	{
+		"stopID": 628,
+		"stopName": "68 St - Hunter College",
+		"lines": 6,
+		"distance": "2.8",
+		"duration": "58 mins"
+	},
+	{
+		"stopID": 142,
+		"stopName": "South Ferry",
+		"lines": 1,
+		"distance": "2.8",
+		"duration": "58 mins"
+	},
+	{
+		"stopID": 123,
+		"stopName": "72 St",
+		"lines": "1 2 3",
+		"distance": "3.0",
+		"duration": "1 hour 1 min"
+	},
+	{
+		"stopID": "Q03",
+		"stopName": "72 St",
+		"lines": "Q",
+		"distance": "3.2",
+		"duration": "1 hour 6 mins"
+	},
+	{
+		"stopID": 627,
+		"stopName": "77 St",
+		"lines": 6,
+		"distance": "3.3",
+		"duration": "1 hour 7 mins"
+	},
+	{
+		"stopID": "A21",
+		"stopName": "81 St - Museum of Natural History",
+		"lines": "B C",
+		"distance": "3.3",
+		"duration": "1 hour 7 mins"
+	},
+	{
+		"stopID": 122,
+		"stopName": "79 St",
+		"lines": 1,
+		"distance": "3.4",
+		"duration": "1 hour 10 mins"
+	},
+	{
+		"stopID": "B06",
+		"stopName": "Roosevelt Island",
+		"lines": "F",
+		"distance": "3.5",
+		"duration": "58 mins"
+	},
+	{
+		"stopID": "A20",
+		"stopName": "86 St",
+		"lines": "B C",
+		"distance": "3.6",
+		"duration": "1 hour 14 mins"
+	},
+	{
+		"stopID": 121,
+		"stopName": "86 St",
+		"lines": 1,
+		"distance": "3.7",
+		"duration": "1 hour 17 mins"
+	},
+	{
+		"stopID": 626,
+		"stopName": "86 St",
+		"lines": "4 5 6",
+		"distance": "3.7",
+		"duration": "1 hour 16 mins"
+	},
+	{
+		"stopID": "Q04",
+		"stopName": "86 St",
+		"lines": "Q",
+		"distance": "4.0",
+		"duration": "1 hour 21 mins"
+	},
+	{
+		"stopID": "A19",
+		"stopName": "96 St",
+		"lines": "B C",
+		"distance": "4.1",
+		"duration": "1 hour 23 mins"
+	},
+	{
+		"stopID": 625,
+		"stopName": "96 St",
+		"lines": 6,
+		"distance": "4.2",
+		"duration": "1 hour 26 mins"
+	},
+	{
+		"stopID": 120,
+		"stopName": "96 St",
+		"lines": "1 2 3",
+		"distance": "4.2",
+		"duration": "1 hour 26 mins"
+	},
+	{
+		"stopID": "A18",
+		"stopName": "103 St",
+		"lines": "B C",
+		"distance": "4.4",
+		"duration": "1 hour 30 mins"
+	},
+	{
+		"stopID": "Q05",
+		"stopName": "96 St",
+		"lines": "Q",
+		"distance": "4.5",
+		"duration": "1 hour 30 mins"
+	},
+	{
+		"stopID": 624,
+		"stopName": "103 St",
+		"lines": 6,
+		"distance": "4.6",
+		"duration": "1 hour 34 mins"
+	},
+	{
+		"stopID": 119,
+		"stopName": "103 St",
+		"lines": 1,
+		"distance": "4.6",
+		"duration": "1 hour 35 mins"
+	},
+	{
+		"stopID": "A17",
+		"stopName": "Cathedral Pkwy (110 St)",
+		"lines": "B C",
+		"distance": "4.8",
+		"duration": "1 hour 37 mins"
+	},
+	{
+		"stopID": 227,
+		"stopName": "Central Park North (110 St)",
+		"lines": "2 3",
+		"distance": "4.9",
+		"duration": "1 hour 39 mins"
+	},
+	{
+		"stopID": 118,
+		"stopName": "Cathedral Pkwy",
+		"lines": 1,
+		"distance": "4.9",
+		"duration": "1 hour 42 mins"
+	},
+	{
+		"stopID": 623,
+		"stopName": "110 St",
+		"lines": 6,
+		"distance": "5.0",
+		"duration": "1 hour 40 mins"
+	},
+	{
+		"stopID": 226,
+		"stopName": "116 St",
+		"lines": "2 3",
+		"distance": "5.1",
+		"duration": "1 hour 44 mins"
+	},
+	{
+		"stopID": 117,
+		"stopName": "116 St - Columbia University",
+		"lines": 1,
+		"distance": "5.2",
+		"duration": "1 hour 48 mins"
+	},
+	{
+		"stopID": 622,
+		"stopName": "116 St",
+		"lines": 6,
+		"distance": "5.2",
+		"duration": "1 hour 46 mins"
+	},
+	{
+		"stopID": "A16",
+		"stopName": "116 St",
+		"lines": "B C",
+		"distance": "5.2",
+		"duration": "1 hour 44 mins"
+	},
+	{
+		"stopID": 225,
+		"stopName": "125 St",
+		"lines": "2 3",
+		"distance": "5.6",
+		"duration": "1 hour 53 mins"
+	},
+	{
+		"stopID": "A15",
+		"stopName": "125 St",
+		"lines": "A B C D",
+		"distance": "5.6",
+		"duration": "1 hour 53 mins"
+	},
+	{
+		"stopID": 621,
+		"stopName": "125 St",
+		"lines": "4 5 6",
+		"distance": "5.7",
+		"duration": "1 hour 55 mins"
+	},
+	{
+		"stopID": 116,
+		"stopName": "125 St",
+		"lines": 1,
+		"distance": "5.8",
+		"duration": "1 hour 59 mins"
+	},
+	{
+		"stopID": 224,
+		"stopName": "135 St",
+		"lines": "2 3",
+		"distance": "6.1",
+		"duration": "2 hours 3 mins"
+	},
+	{
+		"stopID": "A14",
+		"stopName": "135 St",
+		"lines": "B C",
+		"distance": "6.1",
+		"duration": "2 hours 4 mins"
+	},
+	{
+		"stopID": 115,
+		"stopName": "137 St - City College",
+		"lines": 1,
+		"distance": "6.3",
+		"duration": "2 hours 10 mins"
+	},
+	{
+		"stopID": 302,
+		"stopName": "145 St",
+		"lines": 3,
+		"distance": "6.6",
+		"duration": "2 hours 13 mins"
+	},
+	{
+		"stopID": "A12",
+		"stopName": "145 St",
+		"lines": "A B C D",
+		"distance": "6.7",
+		"duration": "2 hours 15 mins"
+	},
+	{
+		"stopID": 114,
+		"stopName": "145 St",
+		"lines": 1,
+		"distance": "6.7",
+		"duration": "2 hours 18 mins"
+	},
+	{
+		"stopID": 301,
+		"stopName": "Harlem - 148 St",
+		"lines": 3,
+		"distance": "6.9",
+		"duration": "2 hours 19 mins"
+	},
+	{
+		"stopID": "D12",
+		"stopName": "155 St",
+		"lines": "B D",
+		"distance": "7.1",
+		"duration": "2 hours 23 mins"
+	},
+	{
+		"stopID": "A11",
+		"stopName": "155 St",
+		"lines": "C",
+		"distance": "7.1",
+		"duration": "2 hours 24 mins"
+	},
+	{
+		"stopID": 113,
+		"stopName": "157 St",
+		"lines": 1,
+		"distance": "7.3",
+		"duration": "2 hours 29 mins"
+	},
+	{
+		"stopID": "A10",
+		"stopName": "163 St - Amsterdam Av",
+		"lines": "C",
+		"distance": "7.5",
+		"duration": "2 hours 33 mins"
+	},
+	{
+		"stopID": 112,
+		"stopName": "168 St - Washington Hts",
+		"lines": 1,
+		"distance": "7.8",
+		"duration": "2 hours 41 mins"
+	},
+	{
+		"stopID": "A09",
+		"stopName": "168 St",
+		"lines": "A C",
+		"distance": "7.8",
+		"duration": "2 hours 39 mins"
+	},
+	{
+		"stopID": "A07",
+		"stopName": "175 St",
+		"lines": "A",
+		"distance": "8.3",
+		"duration": "2 hours 50 mins"
+	},
+	{
+		"stopID": 111,
+		"stopName": "181 St",
+		"lines": 1,
+		"distance": "8.5",
+		"duration": "2 hours 54 mins"
+	},
+	{
+		"stopID": "A06",
+		"stopName": "181 St",
+		"lines": "A",
+		"distance": "8.6",
+		"duration": "2 hours 58 mins"
+	},
+	{
+		"stopID": 110,
+		"stopName": "191 St",
+		"lines": 1,
+		"distance": "9.0",
+		"duration": "3 hours 4 mins"
+	},
+	{
+		"stopID": "A05",
+		"stopName": "190 St",
+		"lines": "A",
+		"distance": "9.1",
+		"duration": "3 hours 9 mins"
+	},
+	{
+		"stopID": 109,
+		"stopName": "Dyckman St",
+		"lines": 1,
+		"distance": "9.6",
+		"duration": "3 hours 13 mins"
+	},
+	{
+		"stopID": "A03",
+		"stopName": "Dyckman St",
+		"lines": "A",
+		"distance": "9.7",
+		"duration": "3 hours 18 mins"
+	},
+	{
+		"stopID": 108,
+		"stopName": "207 St",
+		"lines": 1,
+		"distance": "9.8",
+		"duration": "3 hours 16 mins"
+	}
+]

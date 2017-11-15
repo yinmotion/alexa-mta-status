@@ -1,6 +1,8 @@
 'use strict';
 
 const request = require('request');
+const _=require('lodash');
+const fs = require("fs");
 
 const mapsAPIurl = 'https://maps.googleapis.com/maps/api/geocode/json';
 const distanceAPIurl = "https://maps.googleapis.com/maps/api/distancematrix/json?mode=walking&units=imperial";
@@ -22,6 +24,7 @@ var testAddress = {
 var formattedAddress = "";
 
 var stations;
+var stations_sorted = [];
 
 var requestSettings = {
     method: 'GET',
@@ -90,6 +93,7 @@ var GeocodingUtil = {
         function getDistance() {
             if (index < stations.length) {
                 currStation = stations[index];
+                
                 let requestSettings = {
                     method: 'GET',
                     url: distanceAPIurl + "&origins=" + formattedAddress + "&destinations=" + currStation.latLng + "&key=" + mapsAPIkey
@@ -102,18 +106,29 @@ var GeocodingUtil = {
                         let result = obj.rows[0].elements[0]
                         if (result.status === 'OK') {
                             currStation.distance = result.distance.text.split(' ')[0];
-                            //console.log('distance = ' + currStation.distance);
+                            currStation.duration = result.duration.text;
+                            
+                            let newStation = _.pick(currStation, ['stopID', 'stopName', 'lines', 'distance', 'duration']);
+                            console.log('newStation = ' + JSON.stringify(newStation, null, '\t'));
+                            stations_sorted.push(newStation);
                             index++;
                             getDistance();
                         } else {
-                            console.log('distance error')
+                            console.log('distance error '+JSON.stringify(result));
                         }
                     }
                 })
             }else{
                 console.log('get distance completed');
-                stations.sort(compare);
-                console.log('stations = ' + JSON.stringify(stations));
+                stations_sorted.sort(compare);
+                let stationsJSON =  JSON.stringify(stations_sorted, null, '\t');
+                console.log('stations = ' + stationsJSON);
+                /*
+                fs.writeFile('./data/stations-sorted.json', stationsJSON, (err) => {
+                    if (err) throw err;
+                    console.log('Complete');
+                });
+                */
             }
         }
 
