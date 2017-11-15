@@ -3,12 +3,14 @@
 const request = require('request');
 const _=require('lodash');
 const fs = require("fs");
+const DatabaseHelper = require('./database_helper');
 
 const mapsAPIurl = 'https://maps.googleapis.com/maps/api/geocode/json';
 const distanceAPIurl = "https://maps.googleapis.com/maps/api/distancematrix/json?mode=walking&units=imperial";
-const mapsAPIkey = 'AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE';
 
 const stationlocation = require('./data/stations-by-borough.json');
+
+var mapsAPIkey;
 
 var testAddress = {
     "stateOrRegion": "NY",
@@ -35,6 +37,7 @@ var GeocodingUtil = {
     getGeoCode: function (address) {
         var index = 0
         var currStation = {};
+        mapsAPIkey = process.env.googleMapsAPIkey;
 
         if (!address) {
             address = testAddress;
@@ -44,6 +47,8 @@ var GeocodingUtil = {
         console.log("formatted address = " + formattedAddress);
 
         getStationsByBorough(address.city);
+
+        getDistance();
 
         //console.log(stations);
         /*
@@ -78,8 +83,6 @@ var GeocodingUtil = {
             });
 
             stations = aStations;
-
-            getDistance();
         };
 
         function compare(a, b){
@@ -91,6 +94,9 @@ var GeocodingUtil = {
         }
 
         function getDistance() {
+            console.log("getDistance");
+            //return "getDistance";
+
             if (index < stations.length) {
                 currStation = stations[index];
                 
@@ -112,7 +118,7 @@ var GeocodingUtil = {
                             console.log('newStation = ' + JSON.stringify(newStation, null, '\t'));
                             stations_sorted.push(newStation);
                             index++;
-                            getDistance();
+                            //getDistance();
                         } else {
                             console.log('distance error '+JSON.stringify(result));
                         }
@@ -123,6 +129,8 @@ var GeocodingUtil = {
                 stations_sorted.sort(compare);
                 let stationsJSON =  JSON.stringify(stations_sorted, null, '\t');
                 console.log('stations = ' + stationsJSON);
+
+
                 /*
                 fs.writeFile('./data/stations-sorted.json', stationsJSON, (err) => {
                     if (err) throw err;
@@ -137,4 +145,4 @@ var GeocodingUtil = {
 
 module.exports = GeocodingUtil;
 
-GeocodingUtil.getGeoCode(process.argv[2]);
+//GeocodingUtil.getGeoCode(process.argv[2]);

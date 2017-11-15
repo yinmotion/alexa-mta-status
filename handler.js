@@ -1,10 +1,11 @@
 'use strict';
 
+const App = require('./app');
 
 const Alexa = require('alexa-sdk');
 
 const welcomeOutput = "I have the real time MTA status";
-const welcomeReprompt = "Let me know which train and what direction";
+const welcomeReprompt = "Which train and what direction do you want to check";
 
 var $event = null;
 var $alexa = null;

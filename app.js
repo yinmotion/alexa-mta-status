@@ -6,20 +6,23 @@ const feedIDs = require('./data/feedid.json');
 
 const GeocodingUtil = require('./geocoding-util');
 
-const apiKey = '6c2cdead4118f35fe1ed1a3604e37ffb';
+var mtaAPIkey;
 
 var feedId = '1';
 var trainLine = '4';
+var direction = 'uptown'
 
 var requestSettings = {
   method: 'GET',
-  url: mtaURL + '?key=' + apiKey + '&feed_id=',
   encoding: null
 };
 
-var GTFSrealtimeService = {
-  checkStation: function(line, direction){
-    trainLine = line.toUpperCase();
+
+var App = {
+  checkStation: function(lineDirObj){
+
+    trainLine = lineDirObj.line.toUpperCase();
+    direction = lineDirObj.direction;
     console.log("line = " + trainLine);
     console.log("direction = " + direction);
 
@@ -29,17 +32,23 @@ var GTFSrealtimeService = {
         break;
       }
     }
+    
+    mtaAPIkey = process.env.mtaAPIkey;
 
-    requestSettings.url = requestSettings.url + feedId;
+    requestSettings.url = mtaURL + '?key=' + mtaAPIkey + '&feed_id=' + feedId;
+
     console.log("feed_id = " + feedId);
     console.log("requestSettings.url = " + requestSettings.url);
     console.log("requestSettings.method = " + requestSettings.method);
 
-    this.getFeed();
+    console.log("googleMapsAPIkey = " + process.env.googleMapsAPIkey);
+    console.log("requestSettings.url = " + requestSettings.url);
+
+    //GeocodingUtil.getGeoCode();
+    //this.getFeed();
   },
 
   getFeed : function(){
-
     request(requestSettings, function(error, response, body) {
       if (!error && response.statusCode == 200) {
         var feed = GtfsRealtimeBindings.FeedMessage.decode(body);
@@ -94,8 +103,7 @@ var GTFSrealtimeService = {
 
 };
 
-module.exports = GTFSrealtimeService;
+module.exports = App;
 
-//GTFSrealtimeService.checkStation(process.argv[2], process.argv[3]);
-GTFSrealtimeService.getFeed();
+//GTFSrealtimeService.getFeed();
 
