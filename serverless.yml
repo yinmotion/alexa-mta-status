@@ -37,6 +37,9 @@ functions:
   CheckStation:
     handler: app.checkStation
 
+  MochaTest:
+    handler: test_handler.myFunction
+
 plugins:
   - serverless-dynamodb-local
   - serverless-mocha-plugin
