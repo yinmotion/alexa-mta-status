@@ -26,6 +26,7 @@ provider:
   environment: 
     googleMapsAPIkey: ${file(./serverless.keys.yml):${self:provider.stage}.googleMapsAPIkey}
     mtaAPIkey: ${file(./serverless.keys.yml):${self:provider.stage}.mtaAPIkey}
+    SLS_DEBUG: true
 
 
 functions:
@@ -46,27 +47,24 @@ plugins:
 
 custom:
   defaultStage: dev
-  dynamodb:
-    start:
-      migrate: true
 
-resources:
-  Resources:
-    userStationsTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: userStationsTable
-        AttributeDefinitions:
-          - AttributeName: userId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: userId
-            AttributeType: HASH
-          - AttributeName: stations
-            KeyType: L
-        ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
+# resources:
+#   Resources:
+#     userStationsTable:
+#       Type: AWS::DynamoDB::Table
+#       Properties:
+#         TableName: userStationsTable
+#         AttributeDefinitions:
+#           - AttributeName: userId
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: userId
+#             AttributeType: HASH
+#           - AttributeName: stations
+#             KeyType: L
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 5
+#           WriteCapacityUnits: 5
 
 
 

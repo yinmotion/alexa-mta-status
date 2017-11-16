@@ -11,6 +11,18 @@
         "LogGroupName": "/aws/lambda/alexa-mta-status-dev-CheckMTAStatus"
       }
     },
+    "CheckStationLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/alexa-mta-status-dev-CheckStation"
+      }
+    },
+    "MochaTestLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/alexa-mta-status-dev-MochaTest"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -53,6 +65,12 @@
                   "Resource": [
                     {
                       "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-CheckMTAStatus:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-CheckStation:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-MochaTest:*"
                     }
                   ]
                 },
@@ -64,6 +82,12 @@
                   "Resource": [
                     {
                       "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-CheckMTAStatus:*:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-CheckStation:*:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-MochaTest:*:*"
                     }
                   ]
                 }
@@ -92,7 +116,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/alexa-mta-status/dev/1509754061124-2017-11-04T00:07:41.124Z/alexa-mta-status.zip"
+          "S3Key": "serverless/alexa-mta-status/dev/1510855912290-2017-11-16T18:11:52.290Z/alexa-mta-status.zip"
         },
         "FunctionName": "alexa-mta-status-dev-CheckMTAStatus",
         "Handler": "handler.myFunction",
@@ -104,21 +128,127 @@
           ]
         },
         "Runtime": "nodejs6.10",
-        "Timeout": 6
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
+            "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
+            "SLS_DEBUG": true
+          }
+        }
       },
       "DependsOn": [
         "CheckMTAStatusLogGroup",
         "IamRoleLambdaExecution"
       ]
     },
-    "CheckMTAStatusLambdaVersionEOXmILJLYUhd3s3nlxK4yizAhgYg5JzhPwydM": {
+    "CheckMTAStatusLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CheckMTAStatusLambdaFunction"
         },
-        "CodeSha256": "EOXmILJ+LYUhd3s3nl+xK4y+izAh/gYg5J/zhPw/ydM="
+        "CodeSha256": "/pfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8="
+      }
+    },
+    "CheckStationLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/alexa-mta-status/dev/1510855912290-2017-11-16T18:11:52.290Z/alexa-mta-status.zip"
+        },
+        "FunctionName": "alexa-mta-status-dev-CheckStation",
+        "Handler": "app.checkStation",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs6.10",
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
+            "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
+            "SLS_DEBUG": true
+          }
+        }
+      },
+      "DependsOn": [
+        "CheckStationLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "CheckStationLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CheckStationLambdaFunction"
+        },
+        "CodeSha256": "/pfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8="
+      }
+    },
+    "MochaTestLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/alexa-mta-status/dev/1510855912290-2017-11-16T18:11:52.290Z/alexa-mta-status.zip"
+        },
+        "FunctionName": "alexa-mta-status-dev-MochaTest",
+        "Handler": "test_handler.myFunction",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs6.10",
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
+            "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
+            "SLS_DEBUG": true
+          }
+        }
+      },
+      "DependsOn": [
+        "MochaTestLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "MochaTestLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "MochaTestLambdaFunction"
+        },
+        "CodeSha256": "/pfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8="
+      }
+    },
+    "CheckMTAStatusLambdaPermissionAlexaSkill": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CheckMTAStatusLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "alexa-appkit.amazon.com"
       }
     }
   },
@@ -131,7 +261,19 @@
     "CheckMTAStatusLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CheckMTAStatusLambdaVersionEOXmILJLYUhd3s3nlxK4yizAhgYg5JzhPwydM"
+        "Ref": "CheckMTAStatusLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8"
+      }
+    },
+    "CheckStationLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CheckStationLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8"
+      }
+    },
+    "MochaTestLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "MochaTestLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8"
       }
     }
   }

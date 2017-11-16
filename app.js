@@ -1,5 +1,6 @@
 const GtfsRealtimeBindings = require('gtfs-realtime-bindings');
 const request = require('request');
+const _=require('lodash');
 const mtaURL = 'http://datamine.mta.info/mta_esi.php';
 
 const feedIDs = require('./data/feedid.json');
@@ -29,7 +30,6 @@ var App = {
   },
 
   checkStation: function (line_dir) {
-
     trainLine = line_dir.line.toUpperCase();
     direction = line_dir.direction;
     console.log("line = " + trainLine);

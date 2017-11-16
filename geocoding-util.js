@@ -3,7 +3,7 @@
 const request = require('request');
 const _=require('lodash');
 const fs = require("fs");
-const DatabaseHelper = require('./database_helper');
+const DatabaseHelper = require('./database-helper');
 
 const mapsAPIurl = 'https://maps.googleapis.com/maps/api/geocode/json';
 const distanceAPIurl = "https://maps.googleapis.com/maps/api/distancematrix/json?mode=walking&units=imperial";

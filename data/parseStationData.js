@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Sort raw stations data by broughs
+ */
 const fs = require("fs");
 
 var stationsByBorough = [

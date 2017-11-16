@@ -29,7 +29,7 @@ const handlers = {
   },
 
   'CheckMTAStatus': function () {
-    delegateSlotCollection();
+    //delegateSlotCollection();
 
     console.log("CheckMTAStatus : direction = " + $event.request.intent.slots.direction.value);
     console.log("CheckMTAStatus : dialogState = " + $event.request.dialogState);
@@ -53,7 +53,7 @@ const handlers = {
     };
     */
     
-    this.response.speak(`The next ` + $event.request.intent.slots.direction.value + ' ' + $event.request.intent.slots.subwaylineName.value + ' will arrive in ' + arrivalObj.arrivalTime + ' at ' + arrivalObj.stationName);
+    this.response.speak(`The next ` + $event.request.intent.slots.direction.value + ' ' + $event.request.intent.slots.subwaylineName.value + ' will arrive in ' + arrivalObj.arrivalTime + ' at ' + arrivalObj.stationName + ' station');
     this.emit(":responseReady");
 
     //callback(null, response);
