@@ -19,20 +19,29 @@ var requestSettings = {
 
 
 var App = {
-  checkStation: function(lineDirObj){
+  getNextArrivalTime: function(){
+    let arrivalInMins = '6 minutes';
+    let stationName = '14 street union square'
+    let obj = {'arrivalTime' : arrivalInMins, 'stationName' : stationName};
+    //TODO
 
-    trainLine = lineDirObj.line.toUpperCase();
-    direction = lineDirObj.direction;
+    return obj;
+  },
+
+  checkStation: function (line_dir) {
+
+    trainLine = line_dir.line.toUpperCase();
+    direction = line_dir.direction;
     console.log("line = " + trainLine);
     console.log("direction = " + direction);
 
-    for(var idObj of feedIDs){
-      if(idObj.trainLines.includes(trainLine)){
+    for (var idObj of feedIDs) {
+      if (idObj.trainLines.includes(trainLine)) {
         feedId = idObj.id;
         break;
       }
     }
-    
+
     mtaAPIkey = process.env.mtaAPIkey;
 
     requestSettings.url = mtaURL + '?key=' + mtaAPIkey + '&feed_id=' + feedId;
@@ -48,43 +57,43 @@ var App = {
     //this.getFeed();
   },
 
-  getFeed : function(){
-    request(requestSettings, function(error, response, body) {
+  getFeed: function () {
+    request(requestSettings, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var feed = GtfsRealtimeBindings.FeedMessage.decode(body);
         var aArrivals = [];
-        feed.entity.forEach(function(entity) {
+        feed.entity.forEach(function (entity) {
           if (entity.trip_update) {
             //console.log(entity.trip_update.trip.route_id);
 
-             entity.trip_update.stop_time_update.forEach(function(update, index) {
+            entity.trip_update.stop_time_update.forEach(function (update, index) {
               var route_id = entity.trip_update.trip.route_id;
 
-              if(update.stop_id === '635S' && route_id === trainLine){
+              if (update.stop_id === '635S' && route_id === trainLine) {
                 console.log("stop ID = " + update.stop_id);
                 var date = new Date(0);
                 var curDate = new Date();
-                if(update.arrival){
-                date.setUTCSeconds(update.arrival.time);
+                if (update.arrival) {
+                  date.setUTCSeconds(update.arrival.time);
 
 
 
-                console.log("arrival | " + date);
-                var arrivalInMins = (date.getTime()-curDate.getTime())/60000;
-                console.log("time diff = " + arrivalInMins);
+                  console.log("arrival | " + date);
+                  var arrivalInMins = (date.getTime() - curDate.getTime()) / 60000;
+                  console.log("time diff = " + arrivalInMins);
 
-                aArrivals.push(arrivalInMins);
+                  aArrivals.push(arrivalInMins);
 
-              }
-              /*
-              date = new Date(0);
-              if(update.departure){
-                date.setUTCSeconds(update.departure.time);
+                }
+                /*
+                date = new Date(0);
+                if(update.departure){
+                  date.setUTCSeconds(update.departure.time);
 
-                console.log("departure | " + date);
-              }
-              */
-              console.log("====================================================================")
+                  console.log("departure | " + date);
+                }
+                */
+                console.log("====================================================================")
               };
 
             })
@@ -92,9 +101,11 @@ var App = {
 
 
         });
-          aArrivals = aArrivals.sort(function (a, b) {  return a - b;  });
-          console.log(aArrivals);
-      }else{
+        aArrivals = aArrivals.sort(function (a, b) {
+          return a - b;
+        });
+        console.log(aArrivals);
+      } else {
         console.log(error);
         console.log(response)
       }
@@ -106,4 +117,3 @@ var App = {
 module.exports = App;
 
 //GTFSrealtimeService.getFeed();
-

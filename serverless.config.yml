@@ -1,3 +1,4 @@
 dev:
-  dynamoDB
+  dynamodb-credential: {'endpoint':''}
 prd:
+  dynamodb-credential: {'endpoint':''}

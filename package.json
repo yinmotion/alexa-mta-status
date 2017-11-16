@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "alexa-sdk": "^1.0.18",
-    "dynasty": "^0.2.4",
     "gtfs-realtime-bindings": "^0.0.4",
     "lodash": "^4.3.0",
     "request": "^2.83.0",
@@ -19,5 +18,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/yinmotion/alexa-mta-status.git"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "serverless-mocha-plugin": "^1.7.0"
   }
 }
