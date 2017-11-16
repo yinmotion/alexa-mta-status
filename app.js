@@ -13,6 +13,18 @@ var feedId = '1';
 var trainLine = '4';
 var direction = 'uptown'
 
+const testAddress = {
+  "stateOrRegion": "NY",
+  "city": "New York",
+  "countryCode": "US",
+  "postalCode": "10011",
+  "addressLine1": "114 5th Avenue",
+  "addressLine2": "",
+  "addressLine3": "",
+  "districtOrCounty": ""
+};
+const devideId = 'dev-12345';
+
 var requestSettings = {
   method: 'GET',
   encoding: null
@@ -23,6 +35,7 @@ var App = {
   getNextArrivalTime: function(){
     let arrivalInMins = '6 minutes';
     let stationName = '14 street union square'
+    
     let obj = {'arrivalTime' : arrivalInMins, 'stationName' : stationName};
     //TODO
 
@@ -30,8 +43,15 @@ var App = {
   },
 
   checkStation: function (line_dir) {
+    console.log("path = "+ process.env.path);
+
+    //return;
+
     trainLine = line_dir.line.toUpperCase();
     direction = line_dir.direction;
+
+    console.log('device id = ' + line_dir.deviceId);
+
     console.log("line = " + trainLine);
     console.log("direction = " + direction);
 
@@ -48,12 +68,11 @@ var App = {
 
     console.log("feed_id = " + feedId);
     console.log("requestSettings.url = " + requestSettings.url);
-    console.log("requestSettings.method = " + requestSettings.method);
+    //console.log("requestSettings.method = " + requestSettings.method);
+    //console.log("googleMapsAPIkey = " + process.env.googleMapsAPIkey);
+    //console.log("requestSettings.url = " + requestSettings.url);
 
-    console.log("googleMapsAPIkey = " + process.env.googleMapsAPIkey);
-    console.log("requestSettings.url = " + requestSettings.url);
-
-    //GeocodingUtil.getGeoCode();
+    GeocodingUtil.getGeoCode(testAddress, deviceId);
     //this.getFeed();
   },
 

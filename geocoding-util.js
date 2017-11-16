@@ -10,18 +10,18 @@ const distanceAPIurl = "https://maps.googleapis.com/maps/api/distancematrix/json
 
 const stationlocation = require('./data/stations-by-borough.json');
 
+/**
+ * FOR DEV ONLY
+ * static stations list sorted by distance from testAddress to union sq station 
+ */
+const sortedStationJSON = require('./data/stations-sorted.json'); 
+
+var devideId;
+
 var mapsAPIkey;
 
-var testAddress = {
-    "stateOrRegion": "NY",
-    "city": "New York",
-    "countryCode": "US",
-    "postalCode": "10011",
-    "addressLine1": "114 5th Avenue",
-    "addressLine2": "",
-    "addressLine3": "",
-    "districtOrCounty": ""
-};
+/** Max. distance for selecting stations around a user  **/
+const radius = 1;
 
 var formattedAddress = "";
 
@@ -34,14 +34,13 @@ var requestSettings = {
 };
 
 var GeocodingUtil = {
-    getGeoCode: function (address) {
+    getGeoCode: function (address, id) {
+        devideId = id;
+
         var index = 0
         var currStation = {};
         mapsAPIkey = process.env.googleMapsAPIkey;
 
-        if (!address) {
-            address = testAddress;
-        }
         formattedAddress = address.addressLine1.split(" ").join("+") + ",+" + address.city.split(" ").join("+") + ",+" + address.stateOrRegion + "+" + address.postalCode + ",+US";
         requestSettings.url = mapsAPIurl + "?address=" + formattedAddress + "&key=" + mapsAPIkey;
         console.log("formatted address = " + formattedAddress);
@@ -95,7 +94,11 @@ var GeocodingUtil = {
 
         function getDistance() {
             console.log("getDistance");
-            //return "getDistance";
+            return;
+
+            /*
+               
+            */
 
             if (index < stations.length) {
                 currStation = stations[index];

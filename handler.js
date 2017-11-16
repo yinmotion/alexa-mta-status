@@ -9,6 +9,7 @@ const welcomeReprompt = "Which train and what direction do you want to check";
 
 var $event = null;
 var $alexa = null;
+var $context = null;
 
 
 module.exports.myFunction = (event, context, callback) => {
@@ -17,6 +18,7 @@ module.exports.myFunction = (event, context, callback) => {
 
   $event = event;
   $alexa = alexa;
+  $context = context;
 
   alexa.registerHandlers(handlers);
   alexa.execute();
@@ -36,7 +38,9 @@ const handlers = {
 
     let line = $event.request.intent.slots.subwaylineName.value;
     let dir = $event.request.intent.slots.direction.value;
-    let line_dir = {'line' : line, 'direction' : dir};
+    let deviceId = $context.System.device.deviceId;
+    
+    let line_dir = {'line' : line, 'direction' : dir, 'deviceId' : deviceId};
 
     let arrivalObj = App.getNextArrivalTime(line_dir);
 
