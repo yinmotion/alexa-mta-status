@@ -21,7 +21,7 @@ var devideId;
 var mapsAPIkey;
 
 /** Max. distance for selecting stations around a user  **/
-const radius = 1;
+const userStationRadius = 1;
 
 var formattedAddress = "";
 
@@ -114,14 +114,20 @@ var GeocodingUtil = {
                         //console.log('status = ' + status);
                         let result = obj.rows[0].elements[0]
                         if (result.status === 'OK') {
+                            //distance in miles
                             currStation.distance = result.distance.text.split(' ')[0];
                             currStation.duration = result.duration.text;
-                            
-                            let newStation = _.pick(currStation, ['stopID', 'stopName', 'lines', 'distance', 'duration']);
-                            console.log('newStation = ' + JSON.stringify(newStation, null, '\t'));
-                            stations_sorted.push(newStation);
+                            /**
+                             * Pick station within the user station radius
+                             * For storing in user station DB
+                             */
+                            if(distance<=userStationRadius){
+                                let newStation = _.pick(currStation, ['stopID', 'distance', 'duration']);
+                                console.log('newStation = ' + JSON.stringify(newStation, null, '\t'));
+                                stations_sorted.push(newStation);
+                            }
                             index++;
-                            //getDistance();
+                            getDistance();
                         } else {
                             console.log('distance error '+JSON.stringify(result));
                         }
@@ -143,6 +149,24 @@ var GeocodingUtil = {
             }
         }
 
+    },
+    /**
+     * 
+     */
+    getUserStations : function(address, id, callback){
+        
+
+        let aStations = [];
+        for(var i = 0; i < sortedStationJSON.length; i++){
+            let station = sortedStationJSON[i];
+            if(station.distance <= userStationRadius){
+                let obj = _.pick(station, ['stopID', 'distance', 'duration']);
+                aStations.push(obj);
+            }else{
+                callback(aStations);
+                return;
+            }
+        }
     }
 };
 

@@ -16,7 +16,7 @@ var dynasty = localDynasty;
 
 var userStationsTable;
 
-var testUserId = 'test-12345';
+var devDeviceId = 'dev-12345';
 /*
 const dynamodb = new AWS.DynamoDB.DocumentClient({
     
@@ -52,7 +52,7 @@ var DBhelper = {
     let aStations = [{"stopID": "R20", "stopName": "14 St - Union Sq", "lines": "N Q R W", "distance": "0.2", "duration": "5 mins"}]
     
     userStationsTable.insert({
-        userId: testUserId,
+        userId: devDeviceId,
         stations: aStations
     }).catch(function(error){
         console.log(error);

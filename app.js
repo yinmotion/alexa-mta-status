@@ -1,9 +1,13 @@
 const GtfsRealtimeBindings = require('gtfs-realtime-bindings');
 const request = require('request');
 const _=require('lodash');
+const Promise = require('promise');
+
 const mtaURL = 'http://datamine.mta.info/mta_esi.php';
 
 const feedIDs = require('./data/feedid.json');
+
+const ALL_STATIONS = require('./data/stations-by-borough.json'); 
 
 const GeocodingUtil = require('./geocoding-util');
 
@@ -23,7 +27,7 @@ const testAddress = {
   "addressLine3": "",
   "districtOrCounty": ""
 };
-const devideId = 'dev-12345';
+const deviceId = 'dev-12345';
 
 var requestSettings = {
   method: 'GET',
@@ -32,6 +36,7 @@ var requestSettings = {
 
 
 var App = {
+
   getNextArrivalTime: function(){
     let arrivalInMins = '6 minutes';
     let stationName = '14 street union square'
@@ -43,10 +48,7 @@ var App = {
   },
 
   checkStation: function (line_dir) {
-    console.log("path = "+ process.env.path);
-
-    //return;
-
+    
     trainLine = line_dir.line.toUpperCase();
     direction = line_dir.direction;
 
@@ -55,25 +57,41 @@ var App = {
     console.log("line = " + trainLine);
     console.log("direction = " + direction);
 
+    /** Get MTA Feed id based on trainline */
     for (var idObj of feedIDs) {
       if (idObj.trainLines.includes(trainLine)) {
         feedId = idObj.id;
         break;
       }
     }
+    console.log("checkStation : feed_id = " + feedId);
 
     mtaAPIkey = process.env.mtaAPIkey;
 
     requestSettings.url = mtaURL + '?key=' + mtaAPIkey + '&feed_id=' + feedId;
 
-    console.log("feed_id = " + feedId);
     console.log("requestSettings.url = " + requestSettings.url);
     //console.log("requestSettings.method = " + requestSettings.method);
     //console.log("googleMapsAPIkey = " + process.env.googleMapsAPIkey);
     //console.log("requestSettings.url = " + requestSettings.url);
 
-    GeocodingUtil.getGeoCode(testAddress, deviceId);
+    let userStations = GeocodingUtil.getUserStations(testAddress, deviceId, App.onGetUserStations);
+
+    
+    //GeocodingUtil.getGeoCode(testAddress, deviceId);
     //this.getFeed();
+  },
+
+  onGetUserStations : function(userStations) {
+    console.log('onGetUserStations : user stations = ' + JSON.stringify(userStations, null, '\t'));
+
+    
+
+    for(var i = 0; i<userStations.length; i++){
+      var stopId = userStations[i];
+      ALL_STATIONS
+      
+    }
   },
 
   getFeed: function () {
