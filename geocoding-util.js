@@ -3,6 +3,7 @@
 const request = require('request');
 const _=require('lodash');
 const fs = require("fs");
+const Promise = require('bluebird');
 const DatabaseHelper = require('./database-helper');
 
 const mapsAPIurl = 'https://maps.googleapis.com/maps/api/geocode/json';
@@ -154,7 +155,7 @@ var GeocodingUtil = {
      * 
      */
     getUserStations : function(address, id, callback){
-        
+        console.log("geocolding-util > getUserStations");
 
         let aStations = [];
         for(var i = 0; i < sortedStationJSON.length; i++){
@@ -163,9 +164,14 @@ var GeocodingUtil = {
                 let obj = _.pick(station, ['stopID', 'distance', 'duration']);
                 aStations.push(obj);
             }else{
-                callback(aStations);
-                return;
+                console.log("geocolding-util > getUserStations : complete");
+                break;
             }
+        };
+        if(aStations.length === 0){
+            return Promise.reject('No Stations Found!')
+        }else{
+            return Promise.resolve(aStations);
         }
     }
 };

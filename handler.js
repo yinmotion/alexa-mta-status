@@ -43,19 +43,6 @@ const handlers = {
     let line_dir = {'line' : line, 'direction' : dir, 'deviceId' : deviceId};
 
     let arrivalObj = App.getNextArrivalTime(line_dir);
-
-    /*
-    const response = {
-      version: '1.0',
-      response: {
-        outputSpeech: {
-          type: 'PlainText',
-          text: `Your train is ` + $event.request.intent.slots.direction.value + ' ' + $event.request.intent.slots.subwaylineName.value,
-        },
-        shouldEndSession: false,
-      },
-    };
-    */
     
     this.response.speak(`The next ` + $event.request.intent.slots.direction.value + ' ' + $event.request.intent.slots.subwaylineName.value + ' will arrive in ' + arrivalObj.arrivalTime + ' at ' + arrivalObj.stationName + ' station');
     this.emit(":responseReady");

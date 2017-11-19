@@ -1,7 +1,7 @@
 const GtfsRealtimeBindings = require('gtfs-realtime-bindings');
 const request = require('request');
 const _=require('lodash');
-const Promise = require('promise');
+const Promise = require('bluebird');
 
 const mtaURL = 'http://datamine.mta.info/mta_esi.php';
 
@@ -75,9 +75,13 @@ var App = {
     //console.log("googleMapsAPIkey = " + process.env.googleMapsAPIkey);
     //console.log("requestSettings.url = " + requestSettings.url);
 
-    let userStations = GeocodingUtil.getUserStations(testAddress, deviceId, App.onGetUserStations);
-
-    
+    GeocodingUtil.getUserStations(testAddress, deviceId)
+      .then(function(aStations){
+        App.onGetUserStations(aStations)
+      })
+      .catch(function(error){
+        console.log("getUserStationPromise error = " + error);
+      })
     //GeocodingUtil.getGeoCode(testAddress, deviceId);
     //this.getFeed();
   },
@@ -85,11 +89,9 @@ var App = {
   onGetUserStations : function(userStations) {
     console.log('onGetUserStations : user stations = ' + JSON.stringify(userStations, null, '\t'));
 
-    
-
     for(var i = 0; i<userStations.length; i++){
       var stopId = userStations[i];
-      ALL_STATIONS
+      //ALL_STATIONS
       
     }
   },
