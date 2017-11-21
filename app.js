@@ -27,7 +27,9 @@ const testAddress = {
   "addressLine3": "",
   "districtOrCounty": ""
 };
-const deviceId = 'dev-12345';
+var deviceId = 'dev-12345';
+var accessToken;
+var apiEndpoint;
 
 var requestSettings = {
   method: 'GET',
@@ -37,14 +39,27 @@ var requestSettings = {
 
 var App = {
 
-  getNextArrivalTime: function(){
+  getNextArrivalTime: function(appObj){
+    trainLine = appObj.line;
+    direction = appObj.dir;
+    deviceId = appObj.deviceId;
+    accessToken = appObj.accessToken;
+    apiEndpoint = appObj.apiEndpoint;
+
+    /*******************
+     * Test data start *
+     *******************/
     let arrivalInMins = '6 minutes';
     let stationName = '14 street union square'
     
     let obj = {'arrivalTime' : arrivalInMins, 'stationName' : stationName};
-    //TODO
+    /** Test data end **/
 
-    return obj;
+    if(obj){
+      return Promise.resolve(obj)
+    }else{
+      return Promise.reject('error : ')
+    }
   },
 
   checkStation: function (line_dir) {
@@ -76,14 +91,14 @@ var App = {
     //console.log("requestSettings.url = " + requestSettings.url);
 
     GeocodingUtil.getUserStations(testAddress, deviceId)
-      .then(function(aStations){
+      .then((aStations) => {
         App.onGetUserStations(aStations)
       })
-      .catch(function(error){
-        console.log("getUserStationPromise error = " + error);
+      .catch((error) => {
+        console.log("GeocodingUtil.getUserStations error = " + error);
       })
-    //GeocodingUtil.getGeoCode(testAddress, deviceId);
-    //this.getFeed();
+      
+    //App.getFeed();
   },
 
   onGetUserStations : function(userStations) {

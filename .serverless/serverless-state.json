@@ -10,11 +10,17 @@
       "variableSyntax": "\\${([ ~:a-zA-Z0-9._'\",\\-\\/\\(\\)]+?)}",
       "name": "aws",
       "runtime": "nodejs6.10",
+      "timeout": 30,
       "profile": "admin-cshaoyliu",
       "environment": {
         "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
         "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
-        "SLS_DEBUG": true
+        "accessKeyId": "AKIAJBHW6A4KYKNJCPFA",
+        "secretAccessKey": "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",
+        "path": "/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/munki:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin/:/usr/local/bin/",
+        "userStationsTableName": "userStationsTable",
+        "SLS_DEBUG": true,
+        "stage": "dev"
       },
       "versionFunctions": true,
       "remoteFunctionData": null,
@@ -35,6 +41,18 @@
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/alexa-mta-status-dev-CheckStation"
+            }
+          },
+          "DynamoDBlocalTestPutLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/alexa-mta-status-dev-DynamoDBlocalTestPut"
+            }
+          },
+          "DynamoDBlocalTestReadLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/alexa-mta-status-dev-DynamoDBlocalTestRead"
             }
           },
           "MochaTestLogGroup": {
@@ -90,6 +108,12 @@
                             "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-CheckStation:*"
                           },
                           {
+                            "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-DynamoDBlocalTestPut:*"
+                          },
+                          {
+                            "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-DynamoDBlocalTestRead:*"
+                          },
+                          {
                             "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-MochaTest:*"
                           }
                         ]
@@ -105,6 +129,12 @@
                           },
                           {
                             "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-CheckStation:*:*"
+                          },
+                          {
+                            "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-DynamoDBlocalTestPut:*:*"
+                          },
+                          {
+                            "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-DynamoDBlocalTestRead:*:*"
                           },
                           {
                             "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/alexa-mta-status-dev-MochaTest:*:*"
@@ -136,7 +166,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/alexa-mta-status/dev/1510855912290-2017-11-16T18:11:52.290Z/alexa-mta-status.zip"
+                "S3Key": "serverless/alexa-mta-status/dev/1511216201878-2017-11-20T22:16:41.878Z/alexa-mta-status.zip"
               },
               "FunctionName": "alexa-mta-status-dev-CheckMTAStatus",
               "Handler": "handler.myFunction",
@@ -148,12 +178,17 @@
                 ]
               },
               "Runtime": "nodejs6.10",
-              "Timeout": 6,
+              "Timeout": 30,
               "Environment": {
                 "Variables": {
                   "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
                   "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
-                  "SLS_DEBUG": true
+                  "accessKeyId": "AKIAJBHW6A4KYKNJCPFA",
+                  "secretAccessKey": "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",
+                  "path": "/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/munki:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin/:/usr/local/bin/",
+                  "userStationsTableName": "userStationsTable",
+                  "SLS_DEBUG": true,
+                  "stage": "dev"
                 }
               }
             },
@@ -162,14 +197,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CheckMTAStatusLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8": {
+          "CheckMTAStatusLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CheckMTAStatusLambdaFunction"
               },
-              "CodeSha256": "/pfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8="
+              "CodeSha256": "m8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1Lr/I="
             }
           },
           "CheckStationLambdaFunction": {
@@ -179,7 +214,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/alexa-mta-status/dev/1510855912290-2017-11-16T18:11:52.290Z/alexa-mta-status.zip"
+                "S3Key": "serverless/alexa-mta-status/dev/1511216201878-2017-11-20T22:16:41.878Z/alexa-mta-status.zip"
               },
               "FunctionName": "alexa-mta-status-dev-CheckStation",
               "Handler": "app.checkStation",
@@ -191,12 +226,17 @@
                 ]
               },
               "Runtime": "nodejs6.10",
-              "Timeout": 6,
+              "Timeout": 30,
               "Environment": {
                 "Variables": {
                   "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
                   "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
-                  "SLS_DEBUG": true
+                  "accessKeyId": "AKIAJBHW6A4KYKNJCPFA",
+                  "secretAccessKey": "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",
+                  "path": "/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/munki:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin/:/usr/local/bin/",
+                  "userStationsTableName": "userStationsTable",
+                  "SLS_DEBUG": true,
+                  "stage": "dev"
                 }
               }
             },
@@ -205,14 +245,110 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CheckStationLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8": {
+          "CheckStationLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CheckStationLambdaFunction"
               },
-              "CodeSha256": "/pfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8="
+              "CodeSha256": "m8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1Lr/I="
+            }
+          },
+          "DynamoDBlocalTestPutLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/alexa-mta-status/dev/1511216201878-2017-11-20T22:16:41.878Z/alexa-mta-status.zip"
+              },
+              "FunctionName": "alexa-mta-status-dev-DynamoDBlocalTestPut",
+              "Handler": "database-helper.testPut",
+              "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs6.10",
+              "Timeout": 30,
+              "Environment": {
+                "Variables": {
+                  "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
+                  "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
+                  "accessKeyId": "AKIAJBHW6A4KYKNJCPFA",
+                  "secretAccessKey": "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",
+                  "path": "/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/munki:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin/:/usr/local/bin/",
+                  "userStationsTableName": "userStationsTable",
+                  "SLS_DEBUG": true,
+                  "stage": "dev"
+                }
+              }
+            },
+            "DependsOn": [
+              "DynamoDBlocalTestPutLogGroup",
+              "IamRoleLambdaExecution"
+            ]
+          },
+          "DynamoDBlocalTestPutLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DynamoDBlocalTestPutLambdaFunction"
+              },
+              "CodeSha256": "m8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1Lr/I="
+            }
+          },
+          "DynamoDBlocalTestReadLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/alexa-mta-status/dev/1511216201878-2017-11-20T22:16:41.878Z/alexa-mta-status.zip"
+              },
+              "FunctionName": "alexa-mta-status-dev-DynamoDBlocalTestRead",
+              "Handler": "database-helper.testRead",
+              "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs6.10",
+              "Timeout": 30,
+              "Environment": {
+                "Variables": {
+                  "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
+                  "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
+                  "accessKeyId": "AKIAJBHW6A4KYKNJCPFA",
+                  "secretAccessKey": "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",
+                  "path": "/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/munki:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin/:/usr/local/bin/",
+                  "userStationsTableName": "userStationsTable",
+                  "SLS_DEBUG": true,
+                  "stage": "dev"
+                }
+              }
+            },
+            "DependsOn": [
+              "DynamoDBlocalTestReadLogGroup",
+              "IamRoleLambdaExecution"
+            ]
+          },
+          "DynamoDBlocalTestReadLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DynamoDBlocalTestReadLambdaFunction"
+              },
+              "CodeSha256": "m8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1Lr/I="
             }
           },
           "MochaTestLambdaFunction": {
@@ -222,7 +358,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/alexa-mta-status/dev/1510855912290-2017-11-16T18:11:52.290Z/alexa-mta-status.zip"
+                "S3Key": "serverless/alexa-mta-status/dev/1511216201878-2017-11-20T22:16:41.878Z/alexa-mta-status.zip"
               },
               "FunctionName": "alexa-mta-status-dev-MochaTest",
               "Handler": "test_handler.myFunction",
@@ -234,12 +370,17 @@
                 ]
               },
               "Runtime": "nodejs6.10",
-              "Timeout": 6,
+              "Timeout": 30,
               "Environment": {
                 "Variables": {
                   "googleMapsAPIkey": "AIzaSyBVqsCgzlFaE8wxWXMtkC5gzJ7Wb1KgsUE",
                   "mtaAPIkey": "6c2cdead4118f35fe1ed1a3604e37ffb",
-                  "SLS_DEBUG": true
+                  "accessKeyId": "AKIAJBHW6A4KYKNJCPFA",
+                  "secretAccessKey": "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",
+                  "path": "/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/munki:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/yi.liu/.local/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/bin/:/Developer/SDKs/android-sdk-mac_x86/platform-tools/:/usr/local/bin/:/usr/local/bin/",
+                  "userStationsTableName": "userStationsTable",
+                  "SLS_DEBUG": true,
+                  "stage": "dev"
                 }
               }
             },
@@ -248,14 +389,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "MochaTestLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8": {
+          "MochaTestLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MochaTestLambdaFunction"
               },
-              "CodeSha256": "/pfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8="
+              "CodeSha256": "m8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1Lr/I="
             }
           },
           "CheckMTAStatusLambdaPermissionAlexaSkill": {
@@ -270,6 +411,28 @@
               "Action": "lambda:InvokeFunction",
               "Principal": "alexa-appkit.amazon.com"
             }
+          },
+          "userStationsTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "userStationsTable",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "userId",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "userId",
+                  "KeyType": "HASH"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 5,
+                "WriteCapacityUnits": 5
+              }
+            }
           }
         },
         "Outputs": {
@@ -281,19 +444,31 @@
           "CheckMTAStatusLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CheckMTAStatusLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8"
+              "Ref": "CheckMTAStatusLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI"
             }
           },
           "CheckStationLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CheckStationLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8"
+              "Ref": "CheckStationLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI"
+            }
+          },
+          "DynamoDBlocalTestPutLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DynamoDBlocalTestPutLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI"
+            }
+          },
+          "DynamoDBlocalTestReadLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DynamoDBlocalTestReadLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI"
             }
           },
           "MochaTestLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MochaTestLambdaVersionpfgnx60ZF93wMThR8yqgQPPm18w4R2N21LxzcbnDW8"
+              "Ref": "MochaTestLambdaVersionm8AcG7A5AMmJHqPRnAc09qpzROpe0X9G5LR3kL1LrI"
             }
           }
         }
@@ -317,7 +492,13 @@
       "vpc": {}
     },
     "custom": {
-      "defaultStage": "dev"
+      "defaultStage": "dev",
+      "userStationsTableName": "userStationsTable",
+      "dynamodb": {
+        "start": {
+          "migrate": true
+        }
+      }
     },
     "plugins": [
       "serverless-dynamodb-local",
@@ -326,6 +507,7 @@
     "functions": {
       "CheckMTAStatus": {
         "handler": "handler.myFunction",
+        "timeout": 30,
         "events": [
           "alexaSkill"
         ],
@@ -335,8 +517,26 @@
       },
       "CheckStation": {
         "handler": "app.checkStation",
+        "timeout": 30,
         "events": [],
         "name": "alexa-mta-status-dev-CheckStation",
+        "package": {},
+        "vpc": {}
+      },
+      "DynamoDBlocalTestPut": {
+        "handler": "database-helper.testPut",
+        "SLS_DEBUG": true,
+        "timeout": 30,
+        "events": [],
+        "name": "alexa-mta-status-dev-DynamoDBlocalTestPut",
+        "package": {},
+        "vpc": {}
+      },
+      "DynamoDBlocalTestRead": {
+        "handler": "database-helper.testRead",
+        "timeout": 30,
+        "events": [],
+        "name": "alexa-mta-status-dev-DynamoDBlocalTestRead",
         "package": {},
         "vpc": {}
       },
@@ -348,10 +548,37 @@
         "vpc": {}
       }
     },
+    "resources": {
+      "Resources": {
+        "userStationsTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "userStationsTable",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "userId",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "userId",
+                "KeyType": "HASH"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 5,
+              "WriteCapacityUnits": 5
+            }
+          }
+        }
+      },
+      "Outputs": {}
+    },
     "artifact": "/Users/yi.liu/Documents/workspace_vscode/alexa-mta-status/.serverless/alexa-mta-status.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/alexa-mta-status/dev/1510855912290-2017-11-16T18:11:52.290Z",
+    "artifactDirectoryName": "serverless/alexa-mta-status/dev/1511216201878-2017-11-20T22:16:41.878Z",
     "artifact": "alexa-mta-status.zip"
   }
 }

@@ -4,6 +4,8 @@ const App = require('./app');
 
 const Alexa = require('alexa-sdk');
 
+const Promise = require('bluebird')
+
 const welcomeOutput = "I have the real time MTA status";
 const welcomeReprompt = "Which train and what direction do you want to check";
 
@@ -18,7 +20,7 @@ module.exports.myFunction = (event, context, callback) => {
 
   $event = event;
   $alexa = alexa;
-  $context = context;
+  $context = $event.context;
 
   alexa.registerHandlers(handlers);
   alexa.execute();
@@ -34,24 +36,39 @@ const handlers = {
     //delegateSlotCollection();
 
     console.log("CheckMTAStatus : direction = " + $event.request.intent.slots.direction.value);
+    console.log("CheckMTAStatus : subway line = " + $event.request.intent.slots.subwaylineName.value);
+
     console.log("CheckMTAStatus : dialogState = " + $event.request.dialogState);
 
     let line = $event.request.intent.slots.subwaylineName.value;
     let dir = $event.request.intent.slots.direction.value;
-    let deviceId = $context.System.device.deviceId;
-    
-    let line_dir = {'line' : line, 'direction' : dir, 'deviceId' : deviceId};
 
-    let arrivalObj = App.getNextArrivalTime(line_dir);
+    let deviceId = $context.System.device.deviceId;
+    let accessToken = $context.System.apiAccessToken
+    let apiEndpoint = $context.System.apiEndpoint
     
-    this.response.speak(`The next ` + $event.request.intent.slots.direction.value + ' ' + $event.request.intent.slots.subwaylineName.value + ' will arrive in ' + arrivalObj.arrivalTime + ' at ' + arrivalObj.stationName + ' station');
-    this.emit(":responseReady");
+    console.log("CheckMTAStatus : deviceId = " + deviceId);
+    console.log("CheckMTAStatus : accessToken = " + accessToken);
+    console.log("CheckMTAStatus : apiEndpoint = " + apiEndpoint);
+
+    let appObj = {'line' : line, 'direction' : dir, 'deviceId' : deviceId, 'accessToken' : accessToken, 'apiEndpoint' : apiEndpoint};
+
+    App.getNextArrivalTime(appObj)
+    .then((arrivalObj) => {
+      this.response.speak(`The next ` + $event.request.intent.slots.direction.value + ' ' + $event.request.intent.slots.subwaylineName.value + ' will arrive in ' + arrivalObj.arrivalTime + ' at ' + arrivalObj.stationName + ' station');
+      this.emit(":responseReady");
+    })
+    .catch((error) => {
+      console.log('App.getNextArrivalTime : error = ' + error);
+    });
 
     //callback(null, response);
 
     // Use this code if you don't use the http event with the LAMBDA-PROXY integration
     // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
   },
+
+
 
   'AMAZON.HelpIntent': function () {
     speechOutput = "";

@@ -20,31 +20,39 @@ service: alexa-mta-status
 provider:
   name: aws
   runtime: nodejs6.10
+  timeout: 30
   profile: admin-cshaoyliu
-  stage: ${opt:stage, self:custom.defaultStage}
-
+  
   environment: 
     googleMapsAPIkey: ${file(./serverless.keys.yml):${self:provider.stage}.googleMapsAPIkey}
     mtaAPIkey: ${file(./serverless.keys.yml):${self:provider.stage}.mtaAPIkey}
+    accessKeyId: ${file(./serverless.keys.yml):${self:provider.stage}.accessKeyId}
+    secretAccessKey: ${file(./serverless.keys.yml):${self:provider.stage}.secretAccessKey}
     path: ${env:PATH}
     userStationsTableName: ${self:custom.userStationsTableName}
     SLS_DEBUG: true
+    stage: ${opt:stage, self:custom.defaultStage}
 
 
 functions:
   CheckMTAStatus:
     handler: handler.myFunction
+    timeout: 30
     events:
       - alexaSkill    
 
   CheckStation:
     handler: app.checkStation
+    timeout: 30
 
   DynamoDBlocalTestPut:
     handler: database-helper.testPut
+    SLS_DEBUG: true
+    timeout: 30
 
   DynamoDBlocalTestRead:
     handler: database-helper.testRead
+    timeout: 30
     
   MochaTest:
     handler: test_handler.myFunction

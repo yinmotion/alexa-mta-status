@@ -151,10 +151,11 @@ var GeocodingUtil = {
         }
 
     },
+
     /**
      * 
      */
-    getUserStations : function(address, id, callback){
+    getUserStations : function(address, deviceId){
         console.log("geocolding-util > getUserStations");
 
         let aStations = [];

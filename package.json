@@ -23,7 +23,7 @@
   "devDependencies": {
     "mocha": "^4.0.1",
     "serverless": "^1.24.1",
-    "serverless-mocha-plugin": "^1.7.0",
-    "serverless-dynamodb-local": "^0.2.26"
+    "serverless-dynamodb-local": "^0.2.26",
+    "serverless-mocha-plugin": "^1.7.0"
   }
 }
