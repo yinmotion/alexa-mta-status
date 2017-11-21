@@ -60,3 +60,4 @@ typings/
 # API keys
 serverless.keys.yml
 
+.serverless
