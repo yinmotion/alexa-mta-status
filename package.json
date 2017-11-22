@@ -14,7 +14,8 @@
     "dynasty": "^0.2.8",
     "gtfs-realtime-bindings": "^0.0.4",
     "lodash": "^4.3.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "repository": {
     "type": "git",

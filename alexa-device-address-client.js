@@ -2,6 +2,17 @@
 
 const Https = require('https');
 
+const testAddress = {
+    "stateOrRegion": "NY",
+    "city": "New York",
+    "countryCode": "US",
+    "postalCode": "10011",
+    "addressLine1": "114 5th Avenue",
+    "addressLine2": "",
+    "addressLine3": "",
+    "districtOrCounty": ""
+  };
+
 /**
  * This is a small wrapper client for the Alexa Address API.
  */
@@ -58,13 +69,24 @@ class AlexaDeviceAddressClient {
      * @private
      */
     __handleDeviceAddressApiRequest(requestOptions, fulfill, reject) {
+        if(process.env.stage === 'local'){
+            const deviceAddressResponse = {
+                    statusCode: 200,
+                    address: testAddress
+                };
+
+            fulfill(deviceAddressResponse);
+            
+            return;
+        }
+
         Https.get(requestOptions, (response) => {
             console.log(`Device Address API responded with a status code of : ${response.statusCode}`);
 
             response.on('data', (data) => {
                 let responsePayloadObject = JSON.parse(data);
 
-                const deviceAddressResponse = {
+                deviceAddressResponse = {
                     statusCode: response.statusCode,
                     address: responsePayloadObject
                 };

@@ -1,10 +1,10 @@
 'use strict';
 
-const request = require('request');
+
 const _=require('lodash');
 const fs = require("fs");
 const Promise = require('bluebird');
-const DatabaseHelper = require('./database-helper');
+const rp = require('request-promise');
 
 const mapsAPIurl = 'https://maps.googleapis.com/maps/api/geocode/json';
 const distanceAPIurl = "https://maps.googleapis.com/maps/api/distancematrix/json?mode=walking&units=imperial";
@@ -27,7 +27,7 @@ const userStationRadius = 1;
 var formattedAddress = "";
 
 var stations;
-var stations_sorted = [];
+var test_stations_sorted = require('./data/test-user-stations.json');
 
 var requestSettings = {
     method: 'GET',
@@ -35,36 +35,53 @@ var requestSettings = {
 };
 
 var GeocodingUtil = {
-    getGeoCode: function (address, id) {
+    getGeoCode: function (address, id, resolve, reject) {
+        console.log('GeocodingUtil.getGeoCode : deviceId = ' + id);
+
         devideId = id;
 
         var index = 0
         var currStation = {};
+
+        var stations_sorted = [];
+
         mapsAPIkey = process.env.googleMapsAPIkey;
 
         formattedAddress = address.addressLine1.split(" ").join("+") + ",+" + address.city.split(" ").join("+") + ",+" + address.stateOrRegion + "+" + address.postalCode + ",+US";
         requestSettings.url = mapsAPIurl + "?address=" + formattedAddress + "&key=" + mapsAPIkey;
-        console.log("formatted address = " + formattedAddress);
+        requestSettings.json = true;
+        console.log("requestSettings.url = " + requestSettings.url);
 
         getStationsByBorough(address.city);
 
-        getDistance();
+        let getDistancePromise = new Promise((resolve, reject) => {
+            getDistance(stations, resolve, reject);
+        });
 
-        //console.log(stations);
+        getDistancePromise
+        .then((stations) => {
+            console.log('getDistancePromise : ' + stations.length);
+            resolve(stations);
+        });
+
         /*
-        request(requestSettings, function (error, response, body) {
-            let obj = JSON.parse(body);
+        //Get user address' geo code
+        //NOT USED
+        //use user address directly
+        rp(requestSettings)
+        .then(function(response){
+            
             if (!error && response.statusCode == 200) {
-                let status = obj.status;
+                let status = response.status;
                 console.log('status = ' + status);
                 if (status !== 'OK')
                     return;
     
-                let lat = obj.results[0].geometry.location.lat;
-                let lng = obj.results[0].geometry.location.lng;
+                let lat = response.results[0].geometry.location.lat;
+                let lng = response.results[0].geometry.location.lng;
                 console.log('latLng = ' + lat + ","+lng);
             }
-        });
+        })
         */
 
         function getStationsByBorough(borough) {
@@ -82,6 +99,7 @@ var GeocodingUtil = {
                 }
             });
 
+            //return Promise.resolve(stations);
             stations = aStations;
         };
 
@@ -93,21 +111,59 @@ var GeocodingUtil = {
             return 0;
         }
 
-        function getDistance() {
+        function getDistance(aStations, resolve, reject) {
             console.log("getDistance");
+
+            /**
+             * Skip getting stations for dev
+             */
+
+            resolve(test_stations_sorted);
             return;
 
-            /*
-               
-            */
-
-            if (index < stations.length) {
-                currStation = stations[index];
+            if (index < aStations.length) {
+                currStation = aStations[index];
                 
                 let requestSettings = {
                     method: 'GET',
-                    url: distanceAPIurl + "&origins=" + formattedAddress + "&destinations=" + currStation.latLng + "&key=" + mapsAPIkey
+                    url: distanceAPIurl + "&origins=" + formattedAddress + "&destinations=" + currStation.latLng + "&key=" + mapsAPIkey,
+                    json: true,
+                    resolveWithFullResponse: true
                 };
+
+                console.log(requestSettings.url);
+                //return;
+
+                rp(requestSettings)
+                .then((response) => {
+                    //console.log(response);
+                    if(response.statusCode == 200) {
+                        let result = response.body.rows[0].elements[0]
+                        if (result.status === 'OK') {
+                            //distance in miles
+                            currStation.distance = result.distance.text.split(' ')[0];
+                            currStation.duration = result.duration.text;
+                            /**
+                             * Pick station within the user station radius
+                             * For storing in user station DB
+                             */
+                            if(currStation.distance<=userStationRadius){
+                                let newStation = _.pick(currStation, ['stopID', 'distance', 'duration']);
+                                console.log('newStation = ' + JSON.stringify(newStation, null, '\t'));
+                                stations_sorted.push(newStation);
+                            }
+                            index++;
+                            getDistance(aStations, resolve, reject);
+                        } else {
+                            console.log('distance error '+JSON.stringify(result));
+                        }
+                    }
+                })
+                .catch((reason) => {
+                    console.log(reason);
+                })
+
+                /*
                 request(requestSettings, function (error, response, body) {
                     let obj = JSON.parse(body);
                     if (!error && response.statusCode == 200) {
@@ -118,10 +174,7 @@ var GeocodingUtil = {
                             //distance in miles
                             currStation.distance = result.distance.text.split(' ')[0];
                             currStation.duration = result.duration.text;
-                            /**
-                             * Pick station within the user station radius
-                             * For storing in user station DB
-                             */
+
                             if(distance<=userStationRadius){
                                 let newStation = _.pick(currStation, ['stopID', 'distance', 'duration']);
                                 console.log('newStation = ' + JSON.stringify(newStation, null, '\t'));
@@ -134,13 +187,14 @@ var GeocodingUtil = {
                         }
                     }
                 })
+                */
             }else{
                 console.log('get distance completed');
                 stations_sorted.sort(compare);
                 let stationsJSON =  JSON.stringify(stations_sorted, null, '\t');
                 console.log('stations = ' + stationsJSON);
 
-
+                resolve(stations_sorted);
                 /*
                 fs.writeFile('./data/stations-sorted.json', stationsJSON, (err) => {
                     if (err) throw err;
@@ -155,9 +209,24 @@ var GeocodingUtil = {
     /**
      * 
      */
-    getUserStations : function(address, deviceId){
+    getUserStations : function(address, deviceId, resolve, reject){
         console.log("geocolding-util > getUserStations");
 
+        //*
+        let getGeoCodePromise = new Promise((resolve, reject) => {
+            GeocodingUtil.getGeoCode(address, deviceId, resolve, reject);
+        });
+
+        getGeoCodePromise
+        .then((stations_sorted) => {
+            resolve(stations_sorted);
+        })
+        .catch((error) => {
+            console.log(error);
+            reject(error);
+        })
+        //*/
+        /*
         let aStations = [];
         for(var i = 0; i < sortedStationJSON.length; i++){
             let station = sortedStationJSON[i];
@@ -174,6 +243,7 @@ var GeocodingUtil = {
         }else{
             return Promise.resolve(aStations);
         }
+        */
     }
 };
 

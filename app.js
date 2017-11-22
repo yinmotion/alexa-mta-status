@@ -11,6 +11,8 @@ const ALL_STATIONS = require('./data/stations-by-borough.json');
 
 const GeocodingUtil = require('./geocoding-util');
 
+const DBhelper = require('./database-helper');
+
 var mtaAPIkey;
 
 var feedId = '1';
@@ -46,6 +48,20 @@ var App = {
     accessToken = appObj.accessToken;
     apiEndpoint = appObj.apiEndpoint;
 
+  
+    let getStation = new Promise((resolve, reject) => {
+      console.log("getNextArrivalTime appObj.deviceId = " + appObj.deviceId);
+      DBhelper.getStationsById(appObj, resolve, reject);
+    });
+    
+    getStation
+    .then((stations) => {
+      console.log('App.getNextArrivalTime : stations = ' + stations[0].duration);
+    })
+    .catch((error) => {
+      console.log('DBhelper.getStationsById : error = ' + error);
+    });
+
     /*******************
      * Test data start *
      *******************/
@@ -55,11 +71,13 @@ var App = {
     let obj = {'arrivalTime' : arrivalInMins, 'stationName' : stationName};
     /** Test data end **/
 
+    /*
     if(obj){
       return Promise.resolve(obj)
     }else{
       return Promise.reject('error : ')
     }
+    */
   },
 
   checkStation: function (line_dir) {

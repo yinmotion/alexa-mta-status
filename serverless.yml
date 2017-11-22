@@ -39,7 +39,12 @@ functions:
     handler: handler.myFunction
     timeout: 30
     events:
-      - alexaSkill    
+      - alexaSkill   
+
+  GetNextArrivalTime:
+    handler: app.getNextArrivalTime
+    timeout: 30
+    SLS_DEBUG: true
 
   CheckStation:
     handler: app.checkStation
