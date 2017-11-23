@@ -6,7 +6,7 @@ const Alexa = require('alexa-sdk');
 
 const Promise = require('bluebird')
 
-const welcomeOutput = "I have the real time MTA status";
+const welcomeOutput = "Ask me about the real time Subway status";
 const welcomeReprompt = "Which train and what direction do you want to check";
 
 var $event = null;
@@ -95,7 +95,6 @@ const handlers = {
 
 function delegateSlotCollection() {
   console.log("in delegateSlotCollection");
-  console.log("!! current direction: " + $event.request.intent.slots.direction.value);
   console.log("!! current direction: " + $event.request.intent.slots.direction.value);
   console.log("current dialogState: " + $event.request.dialogState);
   if ($event.request.dialogState === "STARTED") {

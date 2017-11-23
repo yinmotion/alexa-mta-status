@@ -147,9 +147,6 @@ var App = {
                 var curDate = new Date();
                 if (update.arrival) {
                   date.setUTCSeconds(update.arrival.time);
-
-
-
                   console.log("arrival | " + date);
                   var arrivalInMins = (date.getTime() - curDate.getTime()) / 60000;
                   console.log("time diff = " + arrivalInMins);
@@ -187,5 +184,3 @@ var App = {
 };
 
 module.exports = App;
-
-//GTFSrealtimeService.getFeed();

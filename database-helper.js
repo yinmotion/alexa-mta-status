@@ -35,13 +35,6 @@ var devDeviceId = 'dev-12345';
 const ALL_ADDRESS_PERMISSION = "read::alexa:device:all:address";
 
 const PERMISSIONS = [ALL_ADDRESS_PERMISSION];
-/*
-const dynamodb = new AWS.DynamoDB.DocumentClient({
-    
-  region: "localhost",
-  endpoint: "http://localhost:8000"
-});
-*/
 
 var appDataObj;
 
@@ -56,58 +49,58 @@ const DBhelper = {
 
     readUserRecordPromise
       .then((result) => {
-        if(result && result.stations){
+        if (result && result.stations) {
           console.log('!!! readUserRecordPromise : ' + JSON.stringify(result.stations));
           resolve(result.stations);
-        }else{
+        } else {
           /** */
           deviceAddressRequest = new AlexaDeviceAddressClient(appObj.apiEndpoint, appObj.deviceId, appObj.accessToken).getFullAddress();
 
           deviceAddressRequest.then((addressResponse) => {
-            switch(addressResponse.statusCode) {
+            switch (addressResponse.statusCode) {
               case 200:
-                  console.log("Address successfully retrieved");
-                  let address = addressResponse.address;
+                console.log("Address successfully retrieved");
+                let address = addressResponse.address;
 
-                  DBhelper.onGetUserAddress(address, appDataObj.deviceId, resolve, reject);
+                DBhelper.onGetUserAddress(address, appDataObj.deviceId, resolve, reject);
 
-                  break;
+                break;
               case 204:
-                  // This likely means that the user didn't have their address set via the companion app.
-                  console.log("Successfully requested from the device address API, but no address was returned.");
-                  this.emit(":tell", Messages.NO_ADDRESS);
-                  break;
+                // This likely means that the user didn't have their address set via the companion app.
+                console.log("Successfully requested from the device address API, but no address was returned.");
+                this.emit(":tell", Messages.NO_ADDRESS);
+                break;
               case 403:
-                  console.log("The consent token we had wasn't authorized to access the user's address.");
-                  this.emit(":tellWithPermissionCard", Messages.NOTIFY_MISSING_PERMISSIONS, PERMISSIONS);
-                  break;
+                console.log("The consent token we had wasn't authorized to access the user's address.");
+                this.emit(":tellWithPermissionCard", Messages.NOTIFY_MISSING_PERMISSIONS, PERMISSIONS);
+                break;
               default:
-                  this.emit(":ask", Messages.LOCATION_FAILURE, Messages.LOCATION_FAILURE);
+                this.emit(":ask", Messages.LOCATION_FAILURE, Messages.LOCATION_FAILURE);
             }
           })
         }
-        
+
       })
       .catch(function (error) {
         return Promise.reject(error);
       })
   },
 
-  onGetUserAddress: function(address, deviceId, resolve, reject) {
+  onGetUserAddress: function (address, deviceId, resolve, reject) {
     console.log('onGetUserAddress deviceId = ' + this);
 
     let getUserStationsPromise = new Promise((resolve, reject) => {
       console.log("getUserStationsPromise : ");
-      GeoCodingUtil.getUserStations(address, deviceId, resolve, reject)  
+      GeoCodingUtil.getUserStations(address, deviceId, resolve, reject)
     });
 
     getUserStationsPromise
-    .then((userStations) => {
-      DBhelper.putUserStation(userStations, deviceId, resolve, reject);
-    })
-    .catch((error) => {
-      reject(error);
-    })
+      .then((userStations) => {
+        DBhelper.putUserStation(userStations, deviceId, resolve, reject);
+      })
+      .catch((error) => {
+        reject(error);
+      })
   },
 
   setDynasty: function () {
@@ -124,7 +117,7 @@ const DBhelper = {
     userStationsTable = dynasty.table(tableName);
 
     console.log('userStationsTable = ' + userStationsTable);
-    
+
     userStationsTable.find(deviceId)
       .then((result) => {
         console.log('station distance = ' + result);
@@ -134,30 +127,30 @@ const DBhelper = {
       .catch(function (error) {
         console.log(error);
         reject(error);
-    })
-    
+      })
+
   },
 
-  putUserStation : function (aStations, deviceId, resolve, reject) {
+  putUserStation: function (aStations, deviceId, resolve, reject) {
     DBhelper.setDynasty();
     userStationsTable = dynasty.table(tableName);
 
     console.log('putUserStation  : ' + userStationsTable);
 
     userStationsTable.insert({
-      userId: deviceId,
-      stations: aStations
-    })
-    .then((response) => {
-      console.log('aStations = ' + aStations.length);
-      resolve(aStations);
-    })
-    .catch(function (error) {
-      reject(error);
-      console.log('putUserStation: error = ' + error);
-    })
+        userId: deviceId,
+        stations: aStations
+      })
+      .then((response) => {
+        console.log('aStations = ' + aStations.length);
+        resolve(aStations);
+      })
+      .catch(function (error) {
+        reject(error);
+        console.log('putUserStation: error = ' + error);
+      })
 
-    return
+    //return
   }
 };
 
