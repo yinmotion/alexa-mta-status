@@ -1,13 +1,11 @@
 'use strict';
 
 const App = require('./app');
+const Messages = require('./messages');
 
 const Alexa = require('alexa-sdk');
 
-const Promise = require('bluebird')
-
-const welcomeOutput = "Ask me about the real time Subway status";
-const welcomeReprompt = "Which train and what direction do you want to check";
+const Promise = require('bluebird');
 
 var $event = null;
 var $alexa = null;
@@ -28,7 +26,7 @@ module.exports.myFunction = (event, context, callback) => {
 
 const handlers = {
   'LaunchRequest': function () {
-    this.response.speak(welcomeOutput).listen(welcomeReprompt);
+    this.response.speak(Messages.WELCOME_OUTPUT).listen(Messages.WELCOME_REPROMPT);
     this.emit(':responseReady');
   },
 
