@@ -3,7 +3,7 @@ const _ = require("lodash");
 const Promise = require('bluebird');
 const AlexaDeviceAddressClient = require('./alexa-device-address-client');
 const GeoCodingUtil = require('./geocoding-util');
-const Messages = require('./messages');
+const Messages = require('./Messages');
 
 const AWS = require("aws-sdk");
 
@@ -29,8 +29,6 @@ var awsDynasty = require('dynasty')(awsCredentials);
 var dynasty = localDynasty;
 
 var userStationsTable;
-
-var devDeviceId = 'dev-12345';
 
 const ALL_ADDRESS_PERMISSION = "read::alexa:device:all:address";
 
@@ -149,8 +147,6 @@ const DBhelper = {
         reject(error);
         console.log('putUserStation: error = ' + error);
       })
-
-    //return
   }
 };
 

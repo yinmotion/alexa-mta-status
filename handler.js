@@ -1,7 +1,7 @@
 'use strict';
 
 const App = require('./app');
-const Messages = require('./messages');
+const Messages = require('./Messages');
 
 const Alexa = require('alexa-sdk');
 
@@ -30,28 +30,49 @@ const handlers = {
     this.emit(':responseReady');
   },
 
-  'CheckMTAStatus': function () {
+  'CheckMTAStatus': function (obj) {
     //delegateSlotCollection();
 
-    console.log("CheckMTAStatus : direction = " + $event.request.intent.slots.direction.value);
-    console.log("CheckMTAStatus : subway line = " + $event.request.intent.slots.subwaylineName.value);
+    if(process.env.stage === 'local'){
+      var line = obj.line;
+      var dir = obj.dir;
+      
+      var deviceId = obj.deviceId;
+      var accessToken = obj.accessToken;
+      var apiEndpoint = obj.apiEndpoint;
+    }else{
+      console.log('CheckMTAStatus : stage = ' + process.env.stage);
+      console.log('CheckMTAStatus : subwaylineName = ' + $event.request.intent.slots.subwaylineName.value);
+      
+      line = $event.request.intent.slots.subwaylineName.value;
+      dir = $event.request.intent.slots.direction.value;
+      
+      deviceId = $context.System.device.deviceId;
+      accessToken = $context.System.apiAccessToken
+      apiEndpoint = $context.System.apiEndpoint
+    };
 
-    console.log("CheckMTAStatus : dialogState = " + $event.request.dialogState);
+    if(deviceId == null || deviceId == undefined){
+      deviceId = 'dev-1234567';
+    };
 
-    let line = $event.request.intent.slots.subwaylineName.value;
-    let dir = $event.request.intent.slots.direction.value;
-
-    let deviceId = $context.System.device.deviceId;
-    let accessToken = $context.System.apiAccessToken
-    let apiEndpoint = $context.System.apiEndpoint
+    if(apiEndpoint == null || apiEndpoint == undefined){
+      apiEndpoint = 'https://api.amazonalexa.com';
+    }
     
     console.log("CheckMTAStatus : deviceId = " + deviceId);
     console.log("CheckMTAStatus : accessToken = " + accessToken);
     console.log("CheckMTAStatus : apiEndpoint = " + apiEndpoint);
+    console.log("CheckMTAStatus : line = " + line);
+    console.log("CheckMTAStatus : dir = " + dir);
 
     let appObj = {'line' : line, 'direction' : dir, 'deviceId' : deviceId, 'accessToken' : accessToken, 'apiEndpoint' : apiEndpoint};
 
-    App.getNextArrivalTime(appObj)
+    let getNextArrivalTimePromise = new Promise((resolve, reject) => {
+      App.getNextArrivalTime(appObj, resolve, reject);
+    });
+
+    getNextArrivalTimePromise
     .then((arrivalObj) => {
       this.response.speak(`The next ` + $event.request.intent.slots.direction.value + ' ' + $event.request.intent.slots.subwaylineName.value + ' will arrive in ' + arrivalObj.arrivalTime + ' at ' + arrivalObj.stationName + ' station');
       this.emit(":responseReady");

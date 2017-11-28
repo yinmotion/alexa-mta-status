@@ -21,6 +21,8 @@ var feedId = "1";
 var trainLine = "4";
 var direction = "uptown";
 
+var stationName;
+
 const testAddress = {
   stateOrRegion: "NY",
   city: "New York",
@@ -40,8 +42,11 @@ var requestSettings = {
   encoding: null
 };
 
+var myRes;
+var myRej;
+
 var App = {
-  getNextArrivalTime: function(appObj) {
+  getNextArrivalTime: function(appObj, resolve, reject) {
     trainLine = appObj.line;
     direction = appObj.dir;
     deviceId = appObj.deviceId;
@@ -54,19 +59,29 @@ var App = {
     });
 
     getStation
-      .then(stations => {
+      .then((stations) => {
         /*
         console.log("App.getNextArrivalTime : stations = " + stations[0].duration);
         */
         let stationID = App.getUserStationByTrainLine(stations);
+        
         console.log('stationID = ' + stationID);
-        App.getFeed(stationID);
+        return new Promise((resolve, reject) => {
+          App.getFeed(stationID, resolve, reject);
+        })
       })
-      .then(aArrivals => {
-        console.log('aArrivals = ' + aArrivals);
+      .then((aArrivals) => {
+        console.log('getStation : aArrivals = ' + aArrivals);
+        console.log('stationName = ' + stationName);
+        let arrivalObj = {
+          'arrivalTime': aArrivals[0],
+          'stationName' : stationName
+        }
+        return Promise.resolve(arrivalObj);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("DBhelper.getStationsById : error = " + error);
+        return Promise.reject(error);
       });
 
     /*******************
@@ -87,58 +102,21 @@ var App = {
     */
   },
 
-  checkStation: function(line_dir) {
-    trainLine = line_dir.line.toUpperCase();
-    direction = line_dir.direction;
-
-    console.log("device id = " + line_dir.deviceId);
-
-    console.log("line = " + trainLine);
-    console.log("direction = " + direction);
-
-    /** Get MTA Feed id based on trainline */
-    for (var idObj of feedIDs) {
-      if (idObj.trainLines.includes(trainLine)) {
-        feedId = idObj.id;
-        break;
-      }
-    }
-    console.log("checkStation : feed_id = " + feedId);
-
-    mtaAPIkey = process.env.mtaAPIkey;
-
-    requestSettings.url = mtaURL + "?key=" + mtaAPIkey + "&feed_id=" + feedId;
-
-    console.log("requestSettings.url = " + requestSettings.url);
-    //console.log("requestSettings.method = " + requestSettings.method);
-    //console.log("googleMapsAPIkey = " + process.env.googleMapsAPIkey);
-    //console.log("requestSettings.url = " + requestSettings.url);
-
-    GeocodingUtil.getUserStations(testAddress, deviceId)
-      .then(aStations => {
-        App.onGetUserStations(aStations);
-      })
-      .catch(error => {
-        console.log("GeocodingUtil.getUserStations error = " + error);
-      });
-
-    //App.getFeed();
-  },
-
   getUserStationByTrainLine: function(userStations) {
     let userStationId;
     let station;
-
+    //console.log('ALL_STATIONS : ' + ALL_STATIONS);
     /**
      * Filter through all stations to find station that match the train line user spoken
      */
     for (var i = 0; i < userStations.length; i++) {
       var stopId = userStations[i].stopID;
-      console.log("stopId = " + stopId);
+      console.log("getUserStationByTrainLine : stopId = " + stopId);
       _.filter(ALL_STATIONS, function(borough) {
         let obj = _.filter(borough.stations, ["GTFS Stop ID", stopId])[0];
-        if (obj != undefined) {
-          let lines = obj["Daytime Routes"];
+        console.log("getUserStationByTrainLine : obj = " + obj);
+        if (obj !== undefined) {
+          let lines = obj["Daytime Routes"].toString();
           if (lines.indexOf(trainLine) >= 0) {
             console.log("lines : " + lines);
             station = obj;
@@ -146,13 +124,16 @@ var App = {
         }
       });
       
-      if(station && station!=""){
+      if(station !== undefined && station!==""){
         //console.log('!!! station = ' + station["GTFS Stop ID"]);
         break;
       }
     }
 
+    console.log('getUserStationByTrainLine : station = ' + JSON.stringify(station));
     userStationId = station["GTFS Stop ID"];
+
+    stationName = station["Stop Name"];
 
     console.log("stationObj : station id = " + userStationId);
     console.log(
@@ -179,7 +160,7 @@ var App = {
     return userStationId;
   },
 
-  getFeed: function(stationID) {
+  getFeed: function(stationID, resolve, reject) {
     console.log("line = " + trainLine);
     console.log("direction = " + direction);
 
@@ -190,7 +171,7 @@ var App = {
         break;
       }
     }
-    console.log("checkStation : feed_id = " + feedId);
+    console.log("getFeed : feed_id = " + feedId);
 
     mtaAPIkey = process.env.mtaAPIkey;
 
@@ -211,17 +192,18 @@ var App = {
               var route_id = entity.trip_update.trip.route_id;
 
               if (update.stop_id === stationID && route_id === trainLine) {
-                console.log("stop ID = " + update.stop_id);
+                //console.log("stop ID = " + update.stop_id);
                 var date = new Date(0);
                 var curDate = new Date();
                 if (update.arrival) {
                   date.setUTCSeconds(update.arrival.time);
-                  console.log("arrival | " + date);
-                  var arrivalInMins =
-                    (date.getTime() - curDate.getTime()) / 60000;
-                  console.log("time diff = " + arrivalInMins);
-
-                  aArrivals.push(arrivalInMins);
+                  //console.log("arrival | " + date);
+                  var arrivalInMins = (date.getTime() - curDate.getTime()) / 60000;
+                  //console.log("time diff = " + arrivalInMins);
+                  
+                  if(arrivalInMins>0){
+                    aArrivals.push(arrivalInMins);
+                  }
                 }
                 /*
                 date = new Date(0);
@@ -230,10 +212,10 @@ var App = {
 
                   console.log("departure | " + date);
                 }
-                */
                 console.log(
                   "===================================================================="
                 );
+                */
               }
             });
           }
@@ -241,12 +223,12 @@ var App = {
         aArrivals = aArrivals.sort(function(a, b) {
           return a - b;
         });
-        console.log(aArrivals);
-        return Promise.resolve(aArrivals);
+        //console.log(aArrivals);
+        resolve(aArrivals);
       } else {
-        console.log(error);
+        //console.log(error);
         //console.log(response);
-        return Promise.reject(error);
+        reject(error);
       }
     });
   }

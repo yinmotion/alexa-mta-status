@@ -40,7 +40,7 @@ functions:
     timeout: 30
     events:
       - alexaSkill   
-
+      
   GetNextArrivalTime:
     handler: app.getNextArrivalTime
     timeout: 30

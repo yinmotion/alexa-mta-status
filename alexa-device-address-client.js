@@ -69,7 +69,7 @@ class AlexaDeviceAddressClient {
      * @private
      */
     __handleDeviceAddressApiRequest(requestOptions, fulfill, reject) {
-        if(process.env.stage === 'local'){
+        if(process.env.stage === 'dev'){
             const deviceAddressResponse = {
                     statusCode: 200,
                     address: testAddress
@@ -86,7 +86,7 @@ class AlexaDeviceAddressClient {
             response.on('data', (data) => {
                 let responsePayloadObject = JSON.parse(data);
 
-                deviceAddressResponse = {
+                const deviceAddressResponse = {
                     statusCode: response.statusCode,
                     address: responsePayloadObject
                 };
