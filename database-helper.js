@@ -116,7 +116,7 @@ const DBhelper = {
     DBhelper.setDynasty();
     userStationsTable = dynasty.table(tableName);
 
-    console.log('userStationsTable = ' + userStationsTable);
+    //console.log('userStationsTable = ' + userStationsTable);
 
     userStationsTable.find(deviceId)
       .then((result) => {
