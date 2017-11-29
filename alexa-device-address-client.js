@@ -2,16 +2,7 @@
 
 const Https = require('https');
 
-const testAddress = {
-    "stateOrRegion": "NY",
-    "city": "New York",
-    "countryCode": "US",
-    "postalCode": "10011",
-    "addressLine1": "114 5th Avenue",
-    "addressLine2": "",
-    "addressLine3": "",
-    "districtOrCounty": ""
-  };
+const Values = require('./res/values');
 
 /**
  * This is a small wrapper client for the Alexa Address API.
@@ -38,17 +29,6 @@ class AlexaDeviceAddressClient {
      * @return {Promise} promise for the request in flight.
      */
     getFullAddress() {
-        if(this.consentToken === null || this.consentToken === undefined || this.consentToken === ""){
-            const deviceAddressResponse = {
-                statusCode: 200,
-                address: testAddress
-            };
-
-            fulfill(deviceAddressResponse);
-
-            return;
-        }
-
         const options = this.__getRequestOptions(`/v1/devices/${this.deviceId}/settings/address`);
 
         return new Promise((fulfill, reject) => {
@@ -80,18 +60,18 @@ class AlexaDeviceAddressClient {
      * @private
      */
     __handleDeviceAddressApiRequest(requestOptions, fulfill, reject) {
-        //* 
-        if(process.env.stage === 'local'){
+        
+        if(process.env.stage === 'local' || this.consentToken === null || this.consentToken === undefined || this.consentToken === ""){
             const deviceAddressResponse = {
                     statusCode: 200,
-                    address: testAddress
+                    address: Values.TEST_ADDRESS
                 };
 
             fulfill(deviceAddressResponse);
             
             return;
         }
- //*/
+
         Https.get(requestOptions, (response) => {
             console.log(`Device Address API responded with a status code of : ${response.statusCode}`);
 

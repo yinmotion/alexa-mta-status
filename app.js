@@ -3,8 +3,6 @@ const request = require("request");
 const _ = require("lodash");
 const Promise = require("bluebird");
 
-const mtaURL = "http://datamine.mta.info/mta_esi.php";
-
 const feedIDs = require("./data/feedid.json");
 
 const ALL_STATIONS = require("./data/stations-by-borough.json");
@@ -13,27 +11,18 @@ const GeocodingUtil = require("./geocoding-util");
 
 const DBhelper = require("./database-helper");
 
-const Values = require("./Values");
+const Values = require("./res/values");
 
+var mtaURL;
 var mtaAPIkey;
 
-var feedId = "1";
-var trainLine = "4 train";
-var direction = "uptown";
+var feedId = 1;
+var trainLine;
+var direction;
 
 var stationName;
 
-const testAddress = {
-  stateOrRegion: "NY",
-  city: "New York",
-  countryCode: "US",
-  postalCode: "10011",
-  addressLine1: "114 5th Avenue",
-  addressLine2: "",
-  addressLine3: "",
-  districtOrCounty: ""
-};
-var deviceId = "dev-12345";
+var deviceId;
 var accessToken;
 var apiEndpoint;
 
@@ -55,7 +44,7 @@ var App = {
     trainNumber = trainLine.split(" ")[0];
 
     let getStation = new Promise((resolve, reject) => {
-      console.log("getNextArrivalTime appObj.deviceId = " + appObj.deviceId);
+      console.log("App.getNextArrivalTime : deviceId = " + appObj.deviceId);
       DBhelper.getStationsById(appObj, resolve, reject);
     });
 
@@ -72,8 +61,8 @@ var App = {
         })
       })
       .then((aArrivals) => {
-        console.log('getStation : aArrivals = ' + aArrivals);
-        console.log('stationName = ' + stationName);
+        console.log('App.getStation : aArrivals = ' + aArrivals);
+        console.log('App.getStation : stationName = ' + stationName);
         let arrivalTime = Math.round(aArrivals[0]) + ' minutes';
         let arrivalObj = {
           'arrivalTime': arrivalTime,
@@ -82,7 +71,7 @@ var App = {
         resolve(arrivalObj);
       })
       .catch((error) => {
-        console.log("DBhelper.getStationsById : error = " + error);
+        console.log("App.getStation.getStationsById : error = " + error);
         reject(error);
       });
 
@@ -109,21 +98,22 @@ var App = {
     let station;
     //console.log('ALL_STATIONS : ' + ALL_STATIONS);
     /**
-     * Filter through all stations to find station that match the train line user spoken
+     * Filter through all stations to find station that match the train line(e.g. 4 train) user spoken
      */
     for (var i = 0; i < userStations.length; i++) {
       var stopId = userStations[i].stopID;
-      console.log("getUserStationByTrainLine : stopId = " + stopId);
+      //console.log("getUserStationByTrainLine : stopId = " + stopId);
       _.filter(ALL_STATIONS, function(borough) {
         let obj = _.filter(borough.stations, ["GTFS Stop ID", stopId])[0];
         //console.log("getUserStationByTrainLine : obj = " + obj);
         if (obj !== undefined) {
-          console.log("getUserStationByTrainLine : obj = " + JSON.stringify(obj));
+          //console.log("getUserStationByTrainLine : obj = " + JSON.stringify(obj));
           let lines = obj["Daytime Routes"].toString();
-          console.log('getUserStationByTrainLine : lines = ' + lines);
+          //console.log('getUserStationByTrainLine : lines = ' + lines);
           
           if (lines.indexOf(trainNumber) >= 0) {
-            console.log("lines : " + lines);
+            console.log("getUserStationByTrainLine : station = " + JSON.stringify(obj));
+            console.log("getUserStationByTrainLine : lines : " + lines);
             station = obj;
           }
         }
@@ -166,18 +156,23 @@ var App = {
   },
 
   getFeed: function(stationID, resolve, reject) {
-    console.log("line = " + trainLine);
-    console.log("direction = " + direction);
+    console.log("App.getFeed : line = " + trainLine);
+    console.log("App.getFeed : direction = " + direction);
 
-    /** Get MTA Feed id based on trainline */
+    
+    /** 
+     * Get MTA Feed id based on trainline 
+     * 
+     */
     for (var idObj of feedIDs) {
-      if (idObj.trainLines.includes(trainLine)) {
+      if (idObj.trainLines.includes(trainNumber)) {
         feedId = idObj.id;
         break;
       }
     }
-    console.log("getFeed : feed_id = " + feedId);
+    console.log("App getFeed : feed_id = " + feedId);
 
+    mtaURL = process.env.mtaAPIURL;  
     mtaAPIkey = process.env.mtaAPIkey;
 
     requestSettings.url = mtaURL + "?key=" + mtaAPIkey + "&feed_id=" + feedId;

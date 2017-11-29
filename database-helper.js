@@ -3,7 +3,7 @@ const _ = require("lodash");
 const Promise = require('bluebird');
 const AlexaDeviceAddressClient = require('./alexa-device-address-client');
 const GeoCodingUtil = require('./geocoding-util');
-const Messages = require('./Messages');
+const Messages = require('./res/messages');
 
 const AWS = require("aws-sdk");
 
@@ -48,18 +48,18 @@ const DBhelper = {
     readUserRecordPromise
       .then((result) => {
         if (result && result.stations) {
-          console.log('!!! readUserRecordPromise : ' + JSON.stringify(result.stations));
+          console.log('DBhelper.getStationsById: readUserRecordPromise : ' + JSON.stringify(result.stations));
           resolve(result.stations);
         } else {
-          /** 
-           * 
-          */
+          console.log('-------------------------------------------------');
+          console.log('!!! User stations record not found in DB !!!');
+        
           deviceAddressRequest = new AlexaDeviceAddressClient(appObj.apiEndpoint, appObj.deviceId, appObj.accessToken).getFullAddress();
 
           deviceAddressRequest.then((addressResponse) => {
             switch (addressResponse.statusCode) {
               case 200:
-                console.log("Address successfully retrieved");
+                console.log("*** Get user address success ***");
                 let address = addressResponse.address;
 
                 DBhelper.onGetUserAddress(address, appDataObj.deviceId, resolve, reject);
@@ -87,10 +87,9 @@ const DBhelper = {
   },
 
   onGetUserAddress: function (address, deviceId, resolve, reject) {
-    console.log('onGetUserAddress deviceId = ' + this);
+    // console.log('DBhelper.onGetUserAddress');
 
     let getUserStationsPromise = new Promise((resolve, reject) => {
-      console.log("getUserStationsPromise : ");
       GeoCodingUtil.getUserStations(address, deviceId, resolve, reject)
     });
 
@@ -104,9 +103,8 @@ const DBhelper = {
   },
 
   setDynasty: function () {
-    console.log('setDynasty stage = ' + process.env.stage);
+    console.log('DBhelper.setDynasty stage = ' + process.env.stage);
     if (process.env.stage === 'dev' || process.env.stage === 'prd') {
-
       dynasty = awsDynasty;
     }
   },
@@ -120,7 +118,7 @@ const DBhelper = {
 
     userStationsTable.find(deviceId)
       .then((result) => {
-        console.log('station distance = ' + result);
+        console.log('DBhelper.readUserRecord result = ' + result);
         //console.log('user stations = ' + JSON.stringify(result.stations, null, '\t'));
         resolve(result);
       })
@@ -132,22 +130,22 @@ const DBhelper = {
   },
 
   putUserStation: function (aStations, deviceId, resolve, reject) {
+    console.log('*** Save user stations to DB by deviceId ***')
     DBhelper.setDynasty();
     userStationsTable = dynasty.table(tableName);
-
-    console.log('putUserStation  : ' + userStationsTable);
 
     userStationsTable.insert({
         userId: deviceId,
         stations: aStations
       })
       .then((response) => {
-        console.log('aStations = ' + aStations.length);
+        console.log('DBhelper.putUserStation  : ' + userStationsTable);
+        console.log('aStations length = ' + aStations.length);
         resolve(aStations);
       })
       .catch(function (error) {
         reject(error);
-        console.log('putUserStation: error = ' + error);
+        console.log('DBhelper.putUserStation: error = ' + error);
       })
   }
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 const App = require('./app');
-const Messages = require('./Messages');
+const Messages = require('./res/messages');
 
 const Alexa = require('alexa-sdk');
 

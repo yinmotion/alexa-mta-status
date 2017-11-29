@@ -38,8 +38,7 @@ var index = 0;
 
 var GeocodingUtil = {
     getGeoCode: function (address, id, resolve, reject) {
-        console.log('GeocodingUtil.getGeoCode : deviceId = ' + id);
-
+        //console.log('GeocodingUtil.getGeoCode : deviceId = ' + id);
         devideId = id;
 
         var currStation = {};
@@ -51,44 +50,31 @@ var GeocodingUtil = {
         formattedAddress = address.addressLine1.split(" ").join("+") + ",+" + address.city.split(" ").join("+") + ",+" + address.stateOrRegion + "+" + address.postalCode + ",+US";
         requestSettings.url = mapsAPIurl + "?address=" + formattedAddress + "&key=" + mapsAPIkey;
         requestSettings.json = true;
-        console.log("requestSettings.url = " + requestSettings.url);
-
-        
+        console.log("GeocodingUtil.getGeoCode : requestSettings.url = " + requestSettings.url);
 
         let getStationByBoroughPromise = new Promise((resolve, reject) => {
             getStationsByBorough(address.city, resolve, reject);
         })
 
         getStationByBoroughPromise
-        .then((sortedStations) => {
-            console.log('getStationByBoroughPromise : sortedStations '+ sortedStations.length);
+        .then((stationsByBorough) => {
+            console.log('GeocodingUtil.getGeoCode : getStationByBoroughPromise : stationsByBorough length '+ stationsByBorough.length);
             return new Promise((resolve, reject) => {
-                getDistance(sortedStations, resolve, reject);
+                getDistance(stationsByBorough, resolve, reject);
             });
         })
-        .then((stations) => {
-            console.log('getDistancePromise : ' + stations.length);
-            resolve(stations);
+        .then((stationsSortedByDistance) => {
+            console.log('GeocodingUtil.getGeoCode : getStationByBoroughPromise : stationsSortedByDistance length' + stationsSortedByDistance.length);
+            resolve(stationsSortedByDistance);
         })
-        /*
-        let getDistancePromise = new Promise((resolve, reject) => {
-            getDistance(stations, resolve, reject);
-        });
 
-        getDistancePromise
-        .then((stations) => {
-            console.log('getDistancePromise : ' + stations.length);
-            resolve(stations);
-        });
-*/
         /** 
          * NOT USED
-         * Get user address' geo code
-         * Instead use user address directly
+         * Get user address' lat & long
+         * Use user address directly
+         * /
 
-        rp(requestSettings)
-        .then(function(response){
-            
+        rp(requestSettings).then(function(response){
             if (!error && response.statusCode == 200) {
                 let status = response.status;
                 console.log('status = ' + status);
@@ -136,17 +122,13 @@ var GeocodingUtil = {
 
             /**
              * FOR DEV ONLY
-             * Skip getting stations
-             * 
+             * Skip Google Maps distance request
              */
 
             resolve(test_stations_sorted);
             return;
             /**** End of skip */
 
-            console.log("aStations.length = " + aStations.length);
-
-            //return;
 
             if (index < aStations.length) {
                 currStation = aStations[index];
@@ -207,6 +189,7 @@ var GeocodingUtil = {
      */
     getUserStations : function(address, deviceId, resolve, reject){
         console.log("geocolding-util : getUserStations");
+        console.log('*** Get stations close to user address ***');
 
         //*
         let getGeoCodePromise = new Promise((resolve, reject) => {

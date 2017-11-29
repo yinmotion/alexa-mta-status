@@ -24,7 +24,10 @@ provider:
   profile: admin-cshaoyliu
   
   environment: 
+    googleMapsAPIurl: https://maps.googleapis.com/maps/api/geocode/json
+    googleMapsDistanceAPIurl: https://maps.googleapis.com/maps/api/distancematrix/json?mode=walking&units=imperial
     googleMapsAPIkey: ${file(./serverless.keys.yml):${self:provider.stage}.googleMapsAPIkey}
+    mtaAPIURL: http://datamine.mta.info/mta_esi.php
     mtaAPIkey: ${file(./serverless.keys.yml):${self:provider.stage}.mtaAPIkey}
     accessKeyId: ${file(./serverless.keys.yml):${self:provider.stage}.accessKeyId}
     secretAccessKey: ${file(./serverless.keys.yml):${self:provider.stage}.secretAccessKey}
@@ -40,15 +43,11 @@ functions:
     timeout: 30
     events:
       - alexaSkill   
-      
+
   GetNextArrivalTime:
     handler: app.getNextArrivalTime
     timeout: 30
     SLS_DEBUG: true
-
-  CheckStation:
-    handler: app.checkStation
-    timeout: 30
 
   DynamoDBlocalTestPut:
     handler: database-helper.testPut
