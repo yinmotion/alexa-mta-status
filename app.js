@@ -43,6 +43,10 @@ var App = {
 
     trainNumber = trainLine.split(" ")[0];
 
+    if(isNaN(trainNumber)){
+      trainNumber = trainNumber.toLowerCase();
+    }
+
     let getStation = new Promise((resolve, reject) => {
       console.log("App.getNextArrivalTime : deviceId = " + appObj.deviceId);
       DBhelper.getStationsById(appObj, resolve, reject);
@@ -102,14 +106,14 @@ var App = {
      */
     for (var i = 0; i < userStations.length; i++) {
       var stopId = userStations[i].stopID;
-      //console.log("getUserStationByTrainLine : stopId = " + stopId);
+      console.log("getUserStationByTrainLine : stopId = " + stopId);
       _.filter(ALL_STATIONS, function(borough) {
         let obj = _.filter(borough.stations, ["GTFS Stop ID", stopId])[0];
-        //console.log("getUserStationByTrainLine : obj = " + obj);
+        console.log("getUserStationByTrainLine : obj = " + obj);
         if (obj !== undefined) {
-          //console.log("getUserStationByTrainLine : obj = " + JSON.stringify(obj));
-          let lines = obj["Daytime Routes"].toString();
-          //console.log('getUserStationByTrainLine : lines = ' + lines);
+          console.log("getUserStationByTrainLine : obj = " + JSON.stringify(obj));
+          let lines = obj["Daytime Routes"].toString().toLowerCase();
+          console.log('getUserStationByTrainLine : lines = ' + lines);
           
           if (lines.indexOf(trainNumber) >= 0) {
             console.log("getUserStationByTrainLine : station = " + JSON.stringify(obj));
@@ -165,7 +169,8 @@ var App = {
      * 
      */
     for (var idObj of feedIDs) {
-      if (idObj.trainLines.includes(trainNumber)) {
+      let lines = idObj.trainLines.toLowerCase();
+      if (lines.includes(trainNumber)) {
         feedId = idObj.id;
         break;
       }
@@ -185,25 +190,28 @@ var App = {
         //console.log('feed = ' + body);
         var aArrivals = [];
         feed.entity.forEach(function(entity) {
-          //console.log(entity.trip_update);
+          // console.log(entity.trip_update);
           if (entity.trip_update) {
 
             entity.trip_update.stop_time_update.forEach(function(update,index) {
               var route_id = entity.trip_update.trip.route_id;
+              if(isNaN(route_id)){
+                route_id = route_id.toLowerCase();
+              }
               // console.log('update.stop_id = ' + update.stop_id);
               // console.log('stationID = ' + stationID);
               // console.log('route_id = ' + route_id);
               // console.log('trainNumber = ' + trainNumber);
 
               if (update.stop_id === stationID && route_id === trainNumber) {
-                // console.log("stop ID = " + update.stop_id);
+                console.log("App.getFeed : stop ID = " + update.stop_id);
                 var date = new Date(0);
                 var curDate = new Date();
                 if (update.arrival) {
                   date.setUTCSeconds(update.arrival.time);
-                  // console.log("arrival | " + date);
+                  console.log("arrival | " + date);
                   var arrivalInMins = (date.getTime() - curDate.getTime()) / 60000;
-                  // console.log("time diff = " + arrivalInMins);
+                  console.log("time diff = " + arrivalInMins);
                   
                   if(arrivalInMins>0){
                     aArrivals.push(arrivalInMins);
