@@ -3,8 +3,9 @@ const request = require("request");
 const _ = require("lodash");
 const Promise = require("bluebird");
 
+//Feed IDs map JSON
 const feedIDs = require("./data/feedid.json");
-
+//All MTA stations JSON
 const ALL_STATIONS = require("./data/stations-by-borough.json");
 
 const GeocodingUtil = require("./geocoding-util");
@@ -13,25 +14,33 @@ const DBhelper = require("./database-helper");
 
 const Values = require("./res/values");
 
-var mtaURL;
+//MTA real-time feed API URL
+var mtaURL; 
+//MTA real-time feed API key
 var mtaAPIkey;
 
-var feedId = 1;
+//id query string for retreiving MTA feed for specific subway lines
+//e.g. '1' for '1,2,3,4,5,6,S' lines 
+var feedId;
+
+//Train line passed from Alexa Skill, e.g. 4 train
 var trainLine;
+//Direction passed from Alexa Skill, e.g. uptown, downtown
 var direction;
 
+//e.g. 4, N, or S 
+var trainNumber;
+
+//Human readable name of matching station, e.g. 14 st. Union Square
 var stationName;
 
+//Echo device ID from Alexa Skill event context
 var deviceId;
+//Access token from Alexa Skill event context
 var accessToken;
+//Alexa API endpoint from Alexa Skill event context
 var apiEndpoint;
 
-var requestSettings = {
-  method: "GET",
-  encoding: null
-};
-
-var trainNumber;
 
 var App = {
   getNextArrivalTime: function(appObj, resolve, reject) {
@@ -109,15 +118,15 @@ var App = {
       console.log("getUserStationByTrainLine : stopId = " + stopId);
       _.filter(ALL_STATIONS, function(borough) {
         let obj = _.filter(borough.stations, ["GTFS Stop ID", stopId])[0];
-        console.log("getUserStationByTrainLine : obj = " + obj);
+        //console.log("getUserStationByTrainLine : obj = " + obj);
         if (obj !== undefined) {
-          console.log("getUserStationByTrainLine : obj = " + JSON.stringify(obj));
+          //console.log("getUserStationByTrainLine : obj = " + JSON.stringify(obj));
           let lines = obj["Daytime Routes"].toString().toLowerCase();
           console.log('getUserStationByTrainLine : lines = ' + lines);
           
           if (lines.indexOf(trainNumber) >= 0) {
-            console.log("getUserStationByTrainLine : station = " + JSON.stringify(obj));
-            console.log("getUserStationByTrainLine : lines : " + lines);
+            //console.log("getUserStationByTrainLine : station = " + JSON.stringify(obj));
+            //console.log("getUserStationByTrainLine : lines : " + lines);
             station = obj;
           }
         }
@@ -129,7 +138,7 @@ var App = {
       }
     }
 
-    console.log('getUserStationByTrainLine : station = ' + JSON.stringify(station));
+    console.log('getUserStationByTrainLine : station = ' + JSON.stringify(station, null, '\t'));
     userStationId = station["GTFS Stop ID"];
 
     stationName = station["Stop Name"];
@@ -162,7 +171,6 @@ var App = {
   getFeed: function(stationID, resolve, reject) {
     console.log("App.getFeed : line = " + trainLine);
     console.log("App.getFeed : direction = " + direction);
-
     
     /** 
      * Get MTA Feed id based on trainline 
@@ -180,6 +188,11 @@ var App = {
     mtaURL = process.env.mtaAPIURL;  
     mtaAPIkey = process.env.mtaAPIkey;
 
+    let requestSettings = {
+      method: "GET",
+      encoding: null
+    };
+
     requestSettings.url = mtaURL + "?key=" + mtaAPIkey + "&feed_id=" + feedId;
     
     console.log('mta url = ' + requestSettings.url);
@@ -187,22 +200,25 @@ var App = {
     request(requestSettings, function(error, response, body) {
       if (!error && response.statusCode == 200) {
         var feed = GtfsRealtimeBindings.FeedMessage.decode(body);
-        //console.log('feed = ' + body);
+        //console.log('feed = ' + feed.entity);
         var aArrivals = [];
         feed.entity.forEach(function(entity) {
-          // console.log(entity.trip_update);
+          
           if (entity.trip_update) {
-
+            //console.log(entity.trip_update);
             entity.trip_update.stop_time_update.forEach(function(update,index) {
               var route_id = entity.trip_update.trip.route_id;
               if(isNaN(route_id)){
                 route_id = route_id.toLowerCase();
               }
-              // console.log('update.stop_id = ' + update.stop_id);
-              // console.log('stationID = ' + stationID);
-              // console.log('route_id = ' + route_id);
-              // console.log('trainNumber = ' + trainNumber);
-
+              /* 
+              console.log('------------------------------------------');
+              console.log('update.stop_id = ' + update.stop_id);
+              console.log('stationID = ' + stationID);
+              console.log('route_id = ' + route_id);
+              console.log('trainNumber = ' + trainNumber);
+              console.log('------------------------------------------');
+              */
               if (update.stop_id === stationID && route_id === trainNumber) {
                 console.log("App.getFeed : stop ID = " + update.stop_id);
                 var date = new Date(0);
@@ -213,7 +229,7 @@ var App = {
                   var arrivalInMins = (date.getTime() - curDate.getTime()) / 60000;
                   console.log("time diff = " + arrivalInMins);
                   
-                  if(arrivalInMins>0){
+                  if(arrivalInMins>1){
                     aArrivals.push(arrivalInMins);
                   }
                 }

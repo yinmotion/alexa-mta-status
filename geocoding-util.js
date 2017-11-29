@@ -6,8 +6,8 @@ const fs = require("fs");
 const Promise = require('bluebird');
 const rp = require('request-promise');
 
-const mapsAPIurl = 'https://maps.googleapis.com/maps/api/geocode/json';
-const distanceAPIurl = "https://maps.googleapis.com/maps/api/distancematrix/json?mode=walking&units=imperial";
+const mapsAPIurl = process.env.googleMapsAPIurl;
+const distanceAPIurl = process.env.googleMapsDistanceAPIurl;
 
 const stationlocation = require('./data/stations-by-borough.json');
 
@@ -188,9 +188,12 @@ var GeocodingUtil = {
      * 
      */
     getUserStations : function(address, deviceId, resolve, reject){
+        // console.log("mapsAPIurl = " + mapsAPIurl);
+        // console.log("distanceAPIurl = " + distanceAPIurl);
+
         console.log("geocolding-util : getUserStations");
         console.log('*** Get stations close to user address ***');
-
+        
         //*
         let getGeoCodePromise = new Promise((resolve, reject) => {
             GeocodingUtil.getGeoCode(address, deviceId, resolve, reject);

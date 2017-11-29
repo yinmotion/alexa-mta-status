@@ -34,7 +34,7 @@
                 "-f",
                 "GetNextArrivalTime",
                 "-d",
-                "{\"line\":\"4 train\", \"direction\":\"downtown\", \"deviceId\":\"dev-0009\", \"accessToken\":\"local-token\", \"apiEndpoint\":\"local-endpoint\"}",
+                "{\"line\":\"5 train\", \"direction\":\"downtown\", \"deviceId\":\"dev-0010\", \"accessToken\":\"local-token\", \"apiEndpoint\":\"local-endpoint\"}",
                 "-s",
                 "local",
                 "--log"

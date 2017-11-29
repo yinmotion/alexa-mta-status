@@ -48,7 +48,7 @@ const DBhelper = {
     readUserRecordPromise
       .then((result) => {
         if (result && result.stations) {
-          console.log('DBhelper.getStationsById: readUserRecordPromise : ' + JSON.stringify(result.stations));
+          console.log('DBhelper.getStationsById: readUserRecordPromise : user DB = ' + JSON.stringify(result.stations));
           resolve(result.stations);
         } else {
           console.log('-------------------------------------------------');
