@@ -34,13 +34,14 @@ var requestSettings = {
     encoding: null
 };
 
+var index = 0;
+
 var GeocodingUtil = {
     getGeoCode: function (address, id, resolve, reject) {
         console.log('GeocodingUtil.getGeoCode : deviceId = ' + id);
 
         devideId = id;
 
-        var index = 0
         var currStation = {};
 
         var stations_sorted = [];
@@ -52,8 +53,24 @@ var GeocodingUtil = {
         requestSettings.json = true;
         console.log("requestSettings.url = " + requestSettings.url);
 
-        getStationsByBorough(address.city);
+        
 
+        let getStationByBoroughPromise = new Promise((resolve, reject) => {
+            getStationsByBorough(address.city, resolve, reject);
+        })
+
+        getStationByBoroughPromise
+        .then((sortedStations) => {
+            console.log('getStationByBoroughPromise : sortedStations '+ sortedStations.length);
+            return new Promise((resolve, reject) => {
+                getDistance(sortedStations, resolve, reject);
+            });
+        })
+        .then((stations) => {
+            console.log('getDistancePromise : ' + stations.length);
+            resolve(stations);
+        })
+        /*
         let getDistancePromise = new Promise((resolve, reject) => {
             getDistance(stations, resolve, reject);
         });
@@ -63,7 +80,7 @@ var GeocodingUtil = {
             console.log('getDistancePromise : ' + stations.length);
             resolve(stations);
         });
-
+*/
         /** 
          * NOT USED
          * Get user address' geo code
@@ -85,10 +102,13 @@ var GeocodingUtil = {
         })
         */
 
-        function getStationsByBorough(borough) {
+        function getStationsByBorough(borough, resolve, reject) {
             let aStations = [];
+            borough = borough.trim().toLowerCase();
+            console.log('getStationsByBorough : borough = ' + borough);
             stationlocation.forEach(element => {
-                if (element.BoroughName.indexOf(borough) >= 0) {
+                let boroughNames = element.BoroughName.toLowerCase();
+                if (boroughNames.indexOf(borough) >= 0) {
                     element.stations.forEach(station => {
                         let objStation = {};
                         objStation.stopID = station["GTFS Stop ID"];
@@ -100,7 +120,7 @@ var GeocodingUtil = {
                 }
             });
 
-            stations = aStations;
+            resolve(aStations);
         };
 
         function compare(a, b){
@@ -123,6 +143,10 @@ var GeocodingUtil = {
             resolve(test_stations_sorted);
             return;
             /**** End of skip */
+
+            console.log("aStations.length = " + aStations.length);
+
+            //return;
 
             if (index < aStations.length) {
                 currStation = aStations[index];

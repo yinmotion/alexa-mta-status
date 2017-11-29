@@ -41,15 +41,18 @@ const handlers = {
       var accessToken = obj.accessToken;
       var apiEndpoint = obj.apiEndpoint;
     }else{
-      console.log('CheckMTAStatus : stage = ' + process.env.stage);
-      console.log('CheckMTAStatus : subwaylineName = ' + $event.request.intent.slots.subwaylineName.value);
+      
       
       line = $event.request.intent.slots.subwaylineName.value;
       dir = $event.request.intent.slots.direction.value;
       
       deviceId = $context.System.device.deviceId;
-      accessToken = $context.System.apiAccessToken
-      apiEndpoint = $context.System.apiEndpoint
+      accessToken = $context.System.apiAccessToken;
+      apiEndpoint = $context.System.apiEndpoint;
+
+      console.log('CheckMTAStatus : stage = ' + process.env.stage);
+      console.log('CheckMTAStatus : subwaylineName = ' + line);
+      console.log('CheckMTAStatus : direction = ' + dir);
     };
 
     if(deviceId == null || deviceId == undefined){
@@ -66,7 +69,13 @@ const handlers = {
     console.log("CheckMTAStatus : line = " + line);
     console.log("CheckMTAStatus : dir = " + dir);
 
-    let appObj = {'line' : line, 'direction' : dir, 'deviceId' : deviceId, 'accessToken' : accessToken, 'apiEndpoint' : apiEndpoint};
+    let appObj = {
+      'line' : line, 
+      'direction' : dir, 
+      'deviceId' : deviceId, 
+      'accessToken' : accessToken, 
+      'apiEndpoint' : apiEndpoint
+    };
 
     let getNextArrivalTimePromise = new Promise((resolve, reject) => {
       App.getNextArrivalTime(appObj, resolve, reject);
@@ -74,6 +83,7 @@ const handlers = {
 
     getNextArrivalTimePromise
     .then((arrivalObj) => {
+      console.log('arrivalObj.arrivalTime = ' + arrivalObj.arrivalTime);
       this.response.speak(`The next ` + $event.request.intent.slots.direction.value + ' ' + $event.request.intent.slots.subwaylineName.value + ' will arrive in ' + arrivalObj.arrivalTime + ' at ' + arrivalObj.stationName + ' station');
       this.emit(":responseReady");
     })

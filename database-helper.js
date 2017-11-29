@@ -51,7 +51,9 @@ const DBhelper = {
           console.log('!!! readUserRecordPromise : ' + JSON.stringify(result.stations));
           resolve(result.stations);
         } else {
-          /** */
+          /** 
+           * 
+          */
           deviceAddressRequest = new AlexaDeviceAddressClient(appObj.apiEndpoint, appObj.deviceId, appObj.accessToken).getFullAddress();
 
           deviceAddressRequest.then((addressResponse) => {

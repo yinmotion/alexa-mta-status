@@ -38,6 +38,17 @@ class AlexaDeviceAddressClient {
      * @return {Promise} promise for the request in flight.
      */
     getFullAddress() {
+        if(this.consentToken === null || this.consentToken === undefined || this.consentToken === ""){
+            const deviceAddressResponse = {
+                statusCode: 200,
+                address: testAddress
+            };
+
+            fulfill(deviceAddressResponse);
+
+            return;
+        }
+
         const options = this.__getRequestOptions(`/v1/devices/${this.deviceId}/settings/address`);
 
         return new Promise((fulfill, reject) => {
@@ -69,7 +80,8 @@ class AlexaDeviceAddressClient {
      * @private
      */
     __handleDeviceAddressApiRequest(requestOptions, fulfill, reject) {
-        if(process.env.stage === 'dev'){
+        //* 
+        if(process.env.stage === 'local'){
             const deviceAddressResponse = {
                     statusCode: 200,
                     address: testAddress
@@ -79,7 +91,7 @@ class AlexaDeviceAddressClient {
             
             return;
         }
-
+ //*/
         Https.get(requestOptions, (response) => {
             console.log(`Device Address API responded with a status code of : ${response.statusCode}`);
 
