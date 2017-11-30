@@ -15,6 +15,7 @@ var $context = null;
 module.exports.myFunction = (event, context, callback) => {
 
   var alexa = Alexa.handler(event, context);
+  alexa.appId = process.env.appId;
 
   $event = event;
   $alexa = alexa;
@@ -50,9 +51,6 @@ const handlers = {
       accessToken = $context.System.apiAccessToken;
       apiEndpoint = $context.System.apiEndpoint;
 
-      console.log('CheckMTAStatus : stage = ' + process.env.stage);
-      console.log('CheckMTAStatus : subwaylineName = ' + line);
-      console.log('CheckMTAStatus : direction = ' + dir);
     };
 
     if(deviceId == null || deviceId == undefined){
@@ -62,12 +60,15 @@ const handlers = {
     if(apiEndpoint == null || apiEndpoint == undefined){
       apiEndpoint = 'https://api.amazonalexa.com';
     }
-    
+
+    console.log('============================================================');
+    console.log('CheckMTAStatus : stage = ' + process.env.stage);    
     console.log("CheckMTAStatus : deviceId = " + deviceId);
     console.log("CheckMTAStatus : accessToken = " + accessToken);
     console.log("CheckMTAStatus : apiEndpoint = " + apiEndpoint);
     console.log("CheckMTAStatus : line = " + line);
     console.log("CheckMTAStatus : dir = " + dir);
+    console.log('============================================================');
 
     let appObj = {
       'line' : line, 

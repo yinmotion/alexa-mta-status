@@ -20,7 +20,7 @@ service: alexa-mta-status
 provider:
   name: aws
   runtime: nodejs6.10
-  timeout: 30
+  timeout: 60
   profile: admin-cshaoyliu
   
   environment: 
@@ -35,14 +35,15 @@ provider:
     userStationsTableName: ${self:custom.userStationsTableName}
     SLS_DEBUG: true
     stage: ${opt:stage, self:custom.defaultStage}
+    appId: amzn1.ask.skill.55f74782-bf8a-4d99-a888-165323fba155
 
 
 functions:
   CheckMTAStatus:
     handler: handler.myFunction
-    timeout: 30
+    timeout: 60
     events:
-      - alexaSkill   
+      - alexaSkill
 
   GetNextArrivalTime:
     handler: app.getNextArrivalTime

@@ -61,7 +61,7 @@ const DBhelper = {
               case 200:
                 console.log("*** Get user address success ***");
                 let address = addressResponse.address;
-
+                console.log("Address = " + address);
                 DBhelper.onGetUserAddress(address, appDataObj.deviceId, resolve, reject);
 
                 break;
