@@ -33,7 +33,6 @@ provider:
     secretAccessKey: ${file(./serverless.keys.yml):${self:provider.stage}.secretAccessKey}
     path: ${env:PATH}
     userStationsTableName: ${self:custom.userStationsTableName}
-    SLS_DEBUG: true
     stage: ${opt:stage, self:custom.defaultStage}
     appId: amzn1.ask.skill.55f74782-bf8a-4d99-a888-165323fba155
 
