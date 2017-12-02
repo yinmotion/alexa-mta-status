@@ -7,22 +7,20 @@ const Alexa = require('alexa-sdk');
 
 const Promise = require('bluebird');
 
-var $event = null;
-var $alexa = null;
-var $context = null;
-
+var $event;
+var $alexa;
+var $context;
 
 module.exports.myFunction = (event, context, callback) => {
 
-  var alexa = Alexa.handler(event, context);
-  alexa.appId = process.env.appId;
+  $alexa = Alexa.handler(event, context);
+  $alexa.appId = process.env.appId;
 
   $event = event;
-  $alexa = alexa;
   $context = $event.context;
 
-  alexa.registerHandlers(handlers);
-  alexa.execute();
+  $alexa.registerHandlers(handlers);
+  $alexa.execute();
 };
 
 const handlers = {
@@ -32,7 +30,10 @@ const handlers = {
   },
 
   'CheckMTAStatus': function (obj) {
-    //delegateSlotCollection();
+    console.log('-----------------------------------------------------------------------')
+    console.log('***                  CheckMTAStatus                ***')
+    console.log('-----------------------------------------------------------------------')
+    delegateSlotCollection();
 
     if(process.env.stage === 'local'){
       var line = obj.line;
@@ -43,7 +44,6 @@ const handlers = {
       var apiEndpoint = obj.apiEndpoint;
     }else{
       
-      
       line = $event.request.intent.slots.subwaylineName.value;
       dir = $event.request.intent.slots.direction.value;
       
@@ -53,11 +53,11 @@ const handlers = {
 
     };
 
-    if(deviceId == null || deviceId == undefined){
+    if(deviceId === null || deviceId === undefined){
       deviceId = 'dev-1234567';
     };
 
-    if(apiEndpoint == null || apiEndpoint == undefined){
+    if(apiEndpoint === null || apiEndpoint === undefined){
       apiEndpoint = 'https://api.amazonalexa.com';
     }
 
@@ -101,27 +101,27 @@ const handlers = {
 
 
   'AMAZON.HelpIntent': function () {
-    speechOutput = "";
-    reprompt = "";
+    let speechOutput = Messages.HELP;
+    let reprompt = "";
     this.response.speak(speechOutput).listen(reprompt);
     this.emit(':responseReady');
   },
-  'AMAZON.CancelIntent': function () {
-    speechOutput = "";
+  'AMAZON.CancelIntent': function() {
+    let speechOutput = Messages.CANCEL;
     this.response.speak(speechOutput);
     this.emit(':responseReady');
   },
   'AMAZON.StopIntent': function () {
-    speechOutput = "";
+    let speechOutput = "";
     this.response.speak(speechOutput);
     this.emit(':responseReady');
   },
   'SessionEndedRequest': function () {
-    var speechOutput = "";
+    let speechOutput = "";
     this.response.speak(speechOutput);
     this.emit(':responseReady');
   },
-}
+};
 
 function delegateSlotCollection() {
   console.log("in delegateSlotCollection");
@@ -143,6 +143,14 @@ function delegateSlotCollection() {
     console.log("returning: " + JSON.stringify($event.request.intent));
     // Dialog is now complete and all required slots should be filled,
     // so call your normal intent handler.
-    return $event.request.intent;
+    if($event.request.intent.confirmationStatus === 'DENIED'){
+      console.log('!!! confirmationStatus = DENIED !!!');
+
+      $alexa.emit(':tell', Messages.CANCEL);
+      $alexa.emit(':responseReady');
+      return;
+    }else{
+      return $event.request.intent;
+    }
   }
 }

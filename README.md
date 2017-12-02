@@ -24,6 +24,9 @@ The project uses Serverless Framework for developing and deploying AWS Lambda fu
 #### serverless.yml 
 Configure settings and properties for AWS services, including user profile, Lambda functions, and resources(DynamoDB, S3, etc.)
 
+#### serverless.keys.yml 
+API keys, access key and secrete are stored in this private yaml file.
+
 ## AWS Lambda
 Serverless Framework deploys functions listed in serverless.yml to AWS Lambda using CloudFormation.
 
