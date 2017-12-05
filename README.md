@@ -3,8 +3,13 @@
 An Alexa Skill that provides real-time MTA subway schedule status retrieved from MTA Realtime API.
 - Skill Name: MTA  
 - Example utterance: 
-- * User: "Alex, ask MTA, when is the next downtown 5 train?" 
-- * Alexa: "The next downtown 5 train will arrive in 6 mins at 14 street Union Square station"
+    * User: "Alex, ask MTA, when is the next {downtown} {5 train}?" 
+    * Alexa: "The next {downtown} {5 train} will arrive in [6 mins] at [14 Street Union Square station]"
+- Intents:
+    * CheckMTAStatus             
+- Slot Types:
+    * TrainDirection (Uptown, Downtown, Queens bound, etc.)    
+    * SubwayLineName (Q train, 4, S, etc.)
 
 ## Alexa Skill
 Create the Alexa Skill in Amazon Developer Console.
@@ -31,6 +36,18 @@ API keys, access key and secrete are stored in this private yaml file.
 Serverless Framework deploys functions listed in serverless.yml to AWS Lambda using CloudFormation.
 
 NOTE: After the function deployed for the first time, login to AWS Console, and add Alexa Skill Kit trigger to the function in AWS Lambda > Functions > functionName > Triggers.
+
+## Modules
+- handler
+    * Initiate and register Alexa Skill intents
+- app
+    * Main application module
+- alexa-device-address-client
+    * Retrieve device's address data
+- database-helper
+    * Save/retrieve user's station list to/from DynamoDB table  
+- geocoding-util
+    * Caculate and build user's station list based on distance between device and subway stations
 
 ## AWS DynamoDB
 The skill uses AWS DynamoDB to store list of subway stations close to the Echo device's address, the device's unique id is the hash key for the table. Properties of the DB are specified under resources in the serverless.yml.
@@ -68,6 +85,8 @@ sls deploy function --function functionName
 
 ## External APIs
 - #### MTA Realtime API
+    - [MTA Real-Time Data Feeds](http://datamine.mta.info/)
+    - [List of Feeds](http://datamine.mta.info/list-of-feeds)
 
 - #### Google Maps Distance Matrix API
-
+    - [Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/)
